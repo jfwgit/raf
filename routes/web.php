@@ -12,9 +12,17 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group( [ 'prefix' => 'admin' , 'middleware' => 'auth'], function() {
+    Route::get('/', 'AdminController@index')->name('admin');
+    Route::get('school',function () {
+        return view('school-list');
+    });
+    Route::get('schools','AdminController@show')->name('showSchools');
+
+    Route::post('school','AdminController@create')->name('createSchool');
+});
