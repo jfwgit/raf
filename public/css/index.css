@@ -1,3 +1,6 @@
+/*
+    DEMO STYLE
+*/
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 
 
@@ -25,6 +28,7 @@ a, a:hover, a:focus {
     background: #fff;
     border: none;
     border-radius: 0;
+    margin-bottom: 40px;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
 
@@ -54,7 +58,7 @@ a, a:hover, a:focus {
 
 
 #sidebar {
-    min-width: 250px;
+    min-width: 261px;
     max-width: 250px;
     background: #7386D5;
     color: #fff;
@@ -94,6 +98,7 @@ a, a:hover, a:focus {
 
 #sidebar ul li.active > a, a[aria-expanded="true"] {
     color: #fff;
+    background: #6d7fcc;
 }
 
 
