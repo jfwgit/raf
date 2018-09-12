@@ -9,6 +9,10 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    /** Constants to manage admin role status */
+    const ADMIN_ROLE_SCHOOL= 0;
+    const ADMIN_ROLE_ADMIN = 1;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -26,4 +30,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function isAdmin()
+    {
+        return $this->role === self::ADMIN_ROLE_ADMIN;
+    }
 }
