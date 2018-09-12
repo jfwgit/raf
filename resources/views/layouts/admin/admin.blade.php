@@ -1,19 +1,18 @@
 @extends('layouts.app')
 @section('content')
 
-<div class="wrapper">
-
-    <nav id="sidebar">
-
+    <div class="wrapper">
+        <!-- Sidebar Holder -->
+        <nav id="sidebar">
             <div class="sidebar-header">
-                <a href="{{ route('admin') }}"><h3>{{ config('app.name', 'Laravel') }}</h3></a>
+                <h3>{{ config('app.name', 'Laravel') }}</h3>
             </div>
 
             <ul class="list-unstyled components">
 
-                <li>
-                    <a href="#schoolMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Schools</a>
-                    <ul class="collapse list-unstyled" id="schoolMenu">
+                <li class="active">
+                    <a href="#schoolSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Schools</a>
+                    <ul class="collapse list-unstyled" id="schoolSubmenu">
                         <li>
                             <a href="#">Create School</a>
                         </li>
@@ -24,9 +23,8 @@
                 </li>
 
                 <li>
-                    <a href="#teachersMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Teachers</a>
-
-                    <ul class="collapse list-unstyled" id="teachersMenu">
+                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Teachers</a>
+                    <ul class="collapse list-unstyled" id="pageSubmenu">
                         <li>
                             <a href="#">Create Teacher</a>
                         </li>
@@ -34,20 +32,16 @@
                             <a href="#">Teachers list</a>
                         </li>
                     </ul>
-
                 </li>
 
             </ul>
 
             <ul class="list-unstyled CTAs">
-                <li><a href="{{ route('logout') }}"
-                            onclick="event.preventDefault();
-                             document.getElementById('logout-form').submit();">
-                        {{ __('Logout') }}
-                    </a>
+                <li>
+                    <a href="{{route('logout')}}" class="download">Logout</a>
                 </li>
             </ul>
-    </nav>
+        </nav>
 
         <!-- Page Content Holder -->
         <div id="content">
@@ -60,7 +54,6 @@
                         <span></span>
                         <span></span>
                     </button>
-
                     <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <i class="fas fa-align-justify"></i>
                     </button>
@@ -81,26 +74,13 @@
                             {{--</li>--}}
                         {{--</ul>--}}
                     {{--</div>--}}
-
                 </div>
             </nav>
-            @yield('contents')
+
+            <h3>Lorem Ipsum Dolor</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <div class="line"></div>
+
         </div>
-</div>
-
-    <!-- jQuery CDN - Slim version (=without AJAX) -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <!-- Popper.JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-    <!-- Bootstrap JS -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#sidebarCollapse').on('click', function () {
-                $('#sidebar').toggleClass('active');
-                $(this).toggleClass('active');
-            });
-        });
-    </script>
+    </div>
 @endsection
