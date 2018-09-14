@@ -28,7 +28,7 @@
                             <a href="#">Create school</a>
                         </li>
                         <li>
-                            <a href="#">Schools list</a>
+                            <a href="{{ route('showSchools') }}">Schools list</a>
                         </li>
                     </ul>
                 </li>
