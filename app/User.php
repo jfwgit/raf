@@ -9,6 +9,28 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'users';
+
+    /**
+     * The table primary key.
+     *
+     * @var string
+     */
+    protected $primaryKey = 'id';
+
+    /**
+     * Indicates if the model should be timestamped.
+     *
+     * @var bool
+     */
+    public $timestamps = false;
+
+
     /** Constants to manage admin role status */
     const ADMIN_ROLE_SCHOOL= 0;
     const ADMIN_ROLE_ADMIN = 1;
