@@ -19,10 +19,11 @@ Auth::routes();
 
 Route::group( [ 'prefix' => 'admin' , 'middleware' => 'auth'], function() {
     Route::get('/', 'AdminController@index')->name('admin');
-    Route::get('school',function () {
-        return view('school-list');
-    });
     Route::get('schools','AdminController@show')->name('showSchools');
 
-    Route::post('school','AdminController@create')->name('createSchool');
+    Route::get('school',function () {
+        return view('admin.create-school');
+    })->name('school');
+
+    Route::post('create/school','AdminController@create')->name('createSchool');
 });

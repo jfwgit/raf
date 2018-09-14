@@ -18,8 +18,20 @@ class AdminController extends Controller
      */
     public function show()
     {
+        $this->authorize('view-school');
         try {
-            $this->authorize('view-school');
+
+        } catch (UnauthorizedException $e) {
+
+        }
+    }
+
+    public function create(Request $request)
+    {
+        $this->authorize('create-school');
+
+        try {
+
         } catch (UnauthorizedException $e) {
 
         }

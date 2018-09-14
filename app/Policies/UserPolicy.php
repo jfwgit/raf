@@ -19,4 +19,15 @@ class UserPolicy
     {
         return $user->isAdmin();
     }
+
+    /**
+     * Determine whether the admin can create the model.
+     *
+     * @param  \App\User  $user
+     * @return mixed
+     */
+    public function create(User $user)
+    {
+        return $user->isAdmin();
+    }
 }
