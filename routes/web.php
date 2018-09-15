@@ -22,7 +22,7 @@ Route::group( [ 'prefix' => 'admin' , 'middleware' => 'auth'], function() {
     Route::get('schools','AdminController@show')->name('showSchools');
 
     Route::get('school',function () {
-        return view('admin.create-school');
+        return view('admin.create-school')->withCode(str_random(17));
     })->name('school');
 
     Route::post('create/school','AdminController@create')->name('createSchool');
