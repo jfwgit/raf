@@ -19,7 +19,7 @@ class AddSchoolIdToTeachers extends Migration
     public function up()
     {
         Schema::table(static::$usersTableName, function (Blueprint $table): void {
-            $table->integer('school_id');
+            $table->integer('school_id')->nullable();
             $table->foreign('school_id')
                 ->references('id')->on('schools')
                 ->onDelete('cascade');
