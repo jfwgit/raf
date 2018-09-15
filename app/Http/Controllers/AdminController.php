@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\Exceptions\FailSchoolCreating;
 use App\Services\SchoolService;
 use App\Validators\School\SchoolValidator;
-use Illuminate\Http\Request;
-use Illuminate\Validation\UnauthorizedException;
-use Symfony\Component\HttpKernel\Exception\ConflictHttpException;
+use Illuminate\View\View;
 
 /**
  * @property-read SchoolService $schoolService
@@ -37,33 +34,11 @@ class AdminController extends Controller
         $this->schoolValidator = $schoolValidator;
     }
 
-    public function index()
+    /**
+     * @return View
+     */
+    public function index(): View
     {
         return view('admin.admin');
-    }
-
-
-    /**
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function show()
-    {
-        $this->authorize('view-school');
-
-        try {
-
-        } catch (UnauthorizedException $e) {
-
-        }
-    }
-
-    public function create(Request $request)
-    {
-        $this->authorize('create-school');
-        $this->schoolValidator->validateForSave($request);
-
-        $school = $this->schoolService->create($request->all());
-
-        return $school;
     }
 }

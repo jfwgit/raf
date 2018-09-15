@@ -19,11 +19,16 @@ Auth::routes();
 
 Route::group( [ 'prefix' => 'admin' , 'middleware' => 'auth'], function() {
     Route::get('/', 'AdminController@index')->name('admin');
-    Route::get('schools','AdminController@show')->name('showSchools');
+    Route::get('schools','SchoolController@index')->name('showSchools');
 
-    Route::get('school',function () {
-        return view('admin.create-school')->withCode(str_random(17));
-    })->name('school');
+    Route::group([ 'prefix' => 'school'], function() {
+        Route::get('/',function () {
+            return view('admin.create-school')->withCode(str_random(17));
+        })->name('school');
 
-    Route::post('create/school','AdminController@create')->name('createSchool');
+        Route::post('create','SchoolController@create')->name('createSchool');
+        Route::get('/{school}','SchoolController@show')->name('showSchool');
+        Route::get('/deactivate/{school}','SchoolController@deactivate')->name('deactivateSchool');
+        Route::get('/activate/{school}','SchoolController@activate')->name('activateSchool');
+    });
 });

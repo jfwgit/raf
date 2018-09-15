@@ -30,4 +30,15 @@ class UserPolicy
     {
         return $user->isAdmin();
     }
+
+    /**
+     * Determine whether the admin can deactivate the model.
+     *
+     * @param  \App\User  $user
+     * @return mixed
+     */
+    public function deactivate(User $user)
+    {
+        return $user->isAdmin();
+    }
 }

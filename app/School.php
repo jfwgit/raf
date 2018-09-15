@@ -10,9 +10,16 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $location
  * @property int $teachers
  * @property string $data
+ * @property int $status
  */
 class School extends Model
 {
+    /**
+     * Constants for manage schools statuses
+     */
+    const SCHOOL_INACTIVE = 0;
+    const SCHOOL_ACTIVE = 1;
+
     /**
      * The table associated with the model.
      *
@@ -45,5 +52,16 @@ class School extends Model
         'location',
         'teachers',
         'data',
+        'status',
     ];
+
+    public function setActiveStatus()
+    {
+        return self::SCHOOL_ACTIVE;
+    }
+
+    public function setInactiveStatus()
+    {
+        return self::SCHOOL_INACTIVE;
+    }
 }
