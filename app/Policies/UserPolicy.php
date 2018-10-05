@@ -41,4 +41,26 @@ class UserPolicy
     {
         return $user->isAdmin();
     }
+
+    /**
+     * Determine whether the admin can activate the model.
+     *
+     * @param  \App\User  $user
+     * @return mixed
+     */
+    public function activate(User $user)
+    {
+        return $user->isAdmin();
+    }
+
+    /**
+     * Determine whether the admin can view the Teacher model.
+     *
+     * @param  \App\User  $user
+     * @return mixed
+     */
+    public function applied(User $user)
+    {
+        return $user->isAdmin();
+    }
 }

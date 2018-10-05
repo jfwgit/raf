@@ -21,6 +21,7 @@
         <!-- Styles -->
         {{--    <link href="{{ asset('css/app.css') }}" rel="stylesheet">--}}
         <link href="{{ asset('css/sidebar.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
     </head>
 
     <body>
@@ -42,7 +43,7 @@
                                 <a href="#">Create teacher</a>
                             </li>
                             <li>
-                                <a href="#">Teachers list</a>
+                                <a href="{{ route('showTeachers') }}">Teachers list</a>
                             </li>
                         </ul>
                     </li>
@@ -56,6 +57,9 @@
                                 <a href="{{ route('showSchools') }}">Schools list</a>
                             </li>
                         </ul>
+                    </li>
+                    <li>
+                        <a href="{{ route('appliedTeachers') }}">List of teachers applied</a>
                     </li>
                 </ul>
 
@@ -84,11 +88,10 @@
                         <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <i class="fas fa-align-justify"></i>
                         </button>
+                        @yield('filter-bar')
                     </div>
                 </nav>
-
                 @yield('content')
-
             </div>
         </div>
     </div>
@@ -104,5 +107,6 @@
 
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
+
     </body>
 </html>

@@ -49,9 +49,9 @@ class SchoolService
 
     /**
      * @param int $id
-     * @return School
+     * @return School|null
      */
-    public function findById(int $id): School
+    public function findById(int $id): ?School
     {
         try {
             $school = $this->schoolRepository->findById($id);

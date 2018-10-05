@@ -11,9 +11,9 @@ class SchoolRepository
 
     /**
      * @param $id
-     * @return Collection
+     * @return School|null
      */
-    public function findById($id): School
+    public function findById($id): ?School
     {
         return School::find($id);
     }

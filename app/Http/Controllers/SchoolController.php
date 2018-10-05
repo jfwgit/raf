@@ -6,6 +6,7 @@ use App\Services\SchoolService;
 use App\Validators\School\SchoolValidator;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Illuminate\View\View;
 
 /**
@@ -95,7 +96,7 @@ class SchoolController extends Controller
      */
     public function activate($id): RedirectResponse
     {
-        $this->authorize('deactivate-school');
+        $this->authorize('activate-school');
         $this->schoolService->activate($id);
 
         return redirect()->action('SchoolController@index');
