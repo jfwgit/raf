@@ -37,13 +37,14 @@ class TeacherService
 
     /**
      * @return Collection
+     * @throws \Exception
      */
     public function getAll(): Collection
     {
         try {
             $teacher = $this->teacherRepository->getAll();
         } catch (\Exception $e) {
-            throw new \UnexpectedValueException($e->getMessage());
+            throw new \Exception($e->getMessage());
         }
 
         return $teacher;
@@ -75,30 +76,32 @@ class TeacherService
         return $teacher;
     }
 
-//    /**
-//     * @param array $attributes
-//     * @return School
-//     */
-//    public function create(array $attributes): Teacher
-//    {
-//        try {
-//            /** @var School $school */
-//            $teacher = new Teacher();
-//
-//            $school->name = $attributes['name'];
-//            $school->code = $attributes['code'];
-//            $school->data = $attributes['data'];
-//            $school->location = $attributes['location'];
-//            $school->teachers = $attributes['teachers'];
-//            $school->status = $school->setActiveStatus();
-//
-//            $school->save();
-//        } catch (\Exception $e) {
-//            throw new FailSchoolCreating($e->getMessage());
-//        }
-//
-//        return $school;
-//    }
+    /**
+     * @param array $attributes
+     * @return Teacher
+     * @throws FailSchoolCreating
+     */
+    public function create(array $attributes): Teacher
+    {
+        try {
+
+            extract($attributes);
+
+            /** @var School $school */
+            $teacher = new Teacher();
+
+            $teacher->name = $name;
+            $teacher->photo = $photo;
+            $teacher->cv = $cv;
+            $teacher->video = $video;
+
+            $teacher->save();
+        } catch (\Exception $e) {
+            throw new FailSchoolCreating($e->getMessage());
+        }
+
+        return $school;
+    }
 
 //    /**
 //     * @param int $id

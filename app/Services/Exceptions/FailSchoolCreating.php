@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Services\Exceptions;
 
 
-class FailSchoolCreating extends \RuntimeException
+class FailSchoolCreating extends \Exception
 {
 
 }

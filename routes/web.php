@@ -11,6 +11,8 @@
 |
 */
 
+use Illuminate\Support\Facades\Route;
+
 Route::get('/', function () {
     return view('home');
 });
@@ -24,7 +26,7 @@ Route::group( [ 'prefix' => 'admin' , 'middleware' => 'auth'], function() {
 
     Route::group([ 'prefix' => 'school'], function() {
         Route::get('/',function () {
-            return view('admin.create-school')->withCode(str_random(17));
+            return view('admin.create-school')->with('code', str_random(17));
         })->name('school');
 
         Route::post('create','SchoolController@create')->name('createSchool');
@@ -34,6 +36,8 @@ Route::group( [ 'prefix' => 'admin' , 'middleware' => 'auth'], function() {
     });
 
     Route::group([ 'prefix' => 'teacher'], function() {
+        Route::get('/','TeacherController@indexCreate')->name('teacher');
+        Route::post('create','TeacherController@create')->name('createTeacher');
         Route::get('/applied','TeacherController@applied')->name('appliedTeachers');
         Route::get('/{teacher}','TeacherController@show')->name('showTeacher');
     });

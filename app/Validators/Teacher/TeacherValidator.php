@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Validators\School;
+namespace App\Validators\Teacher;
 
 use App\Validators\BaseValidator;
 use Illuminate\Http\Request;
@@ -32,8 +32,7 @@ class TeacherValidator
      */
     public function validateForSave(Request $request): void
     {
-        $requestData = $request->all();
-        $this->baseValidator->validate($requestData, $this->forSaveRules());
+        $this->baseValidator->validate($request->all(), $this->forSaveRules());
     }
 
     /**
@@ -41,28 +40,29 @@ class TeacherValidator
      *
      * @return array
      */
-    protected function forSaveWithNameRules(): array
+    protected function forSaveRules(): array
     {
         return [
-            'name'      => 'required|string|min:2|max:50',
-            'photo'  => 'required|string|max:250',
-            'cv'      => 'required|string',
-            'age'      => 'required|string|min:17|max:17',
-            'ender'  => 'required|integer|min:0',
-            'email'  => 'required|string|min:3|max:150',
-            'phone'      => 'required|string',
-            'degree'      => 'required|string|min:17|max:17',
-            'certification'      => 'required|string',
-            'criminal_check'      => 'required|string|min:17|max:17',
-            'notarized'  => 'required|integer|min:0',
-            'authenticated'  => 'required|integer|min:0',
-            'desired_location'  => 'required|integer|min:0',
-            'current_location'  => 'required|integer|min:0',
-            'nationality'  => 'required|integer|min:0',
-            'video'  => 'required|integer|min:0',
-            'pref_school'  => 'required|integer|min:0',
-            'experience'  => 'required|integer|min:0',
-            'salary_exp'  => 'required|integer|min:0',
+            'name' => 'required|string|min:2|max:50',
+            'photo' => 'nullable|mimes:jpeg,bmp,png|max:3000',
+            'cv' => 'nullable|mimes:doc,docx,pdf|max:3000',
+            'video' => 'nullable|mimetypes:video/avi,video/mpeg,video/quicktime|integer|max:10000',
+            'age' => 'nullable|integer|min:0',
+            'gender' => 'nullable|integer|min:1|max:2',
+            'email' => 'required|email|min:8|max:150',
+            'phone' => 'nullable|string|min:8',
+            'degree' => 'nullable|int|min:1|max:3',
+            'subject' => 'nullable|int|min:1|max:2',
+            'certification' => 'nullable|int|min:1|max:3',
+            'criminal_check' => 'nullable|string|min:1|max:2',
+            'notarized' => 'nullable|integer|min:0',
+            'authenticated' => 'nullable|integer|min:0',
+            'desired_location' => 'nullable|string',
+            'current_location' => 'nullable|string',
+            'nationality' => 'nullable|string',
+            'pref_school' => 'nullable|string',
+            'experience' => 'nullable|integer|min:0',
+            'salary_exp' => 'nullable|integer|min:0',
         ];
     }
 }

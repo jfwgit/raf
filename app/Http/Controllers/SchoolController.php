@@ -6,7 +6,6 @@ use App\Services\SchoolService;
 use App\Validators\School\SchoolValidator;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
 use Illuminate\View\View;
 
 /**
@@ -65,13 +64,14 @@ class SchoolController extends Controller
      * @param Request $request
      * @return RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws \App\Services\Exceptions\FailSchoolCreating
      */
     public function create(Request $request): RedirectResponse
     {
         $this->authorize('create-school');
         $this->schoolValidator->validateForSave($request);
 
-        $school = $this->schoolService->create($request->all());
+        $this->schoolService->create($request->all());
 
         return redirect()->action('SchoolController@index');
     }
@@ -80,6 +80,7 @@ class SchoolController extends Controller
      * @param $id
      * @return RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws \App\Services\Exceptions\FailSchoolUpdating
      */
     public function deactivate($id): RedirectResponse
     {
@@ -93,6 +94,7 @@ class SchoolController extends Controller
      * @param $id
      * @return RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws \App\Services\Exceptions\FailSchoolUpdating
      */
     public function activate($id): RedirectResponse
     {

@@ -65,6 +65,7 @@ class SchoolService
     /**
      * @param array $attributes
      * @return School
+     * @throws FailSchoolCreating
      */
     public function create(array $attributes): School
     {
@@ -90,6 +91,7 @@ class SchoolService
     /**
      * @param int $id
      * @return RedirectResponse
+     * @throws FailSchoolUpdating
      */
     public function deactivate(int $id): RedirectResponse
     {
@@ -108,6 +110,7 @@ class SchoolService
     /**
      * @param int $id
      * @return RedirectResponse
+     * @throws FailSchoolUpdating
      */
     public function activate(int $id): RedirectResponse
     {

@@ -27,10 +27,13 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         Gate::define('view-school', 'App\Policies\UserPolicy@view');
+        Gate::define('view-teacher', 'App\Policies\UserPolicy@view');
+        Gate::define('view-applied', 'App\Policies\UserPolicy@applied');
         Gate::define('create-school', 'App\Policies\UserPolicy@create');
         Gate::define('create-teacher', 'App\Policies\UserPolicy@create');
-        Gate::define('deactivate-school', 'App\Policies\UserPolicy@deactivate');
         Gate::define('activate-school', 'App\Policies\UserPolicy@activate');
-        Gate::define('view-applied', 'App\Policies\UserPolicy@applied');
+        Gate::define('activate-teacher', 'App\Policies\UserPolicy@activate');
+        Gate::define('deactivate-school', 'App\Policies\UserPolicy@deactivate');
+        Gate::define('deactivate-teacher', 'App\Policies\UserPolicy@deactivate');
     }
 }

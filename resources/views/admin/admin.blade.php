@@ -40,7 +40,7 @@
                         <a href="#teacherSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Teachers</a>
                         <ul class="collapse list-unstyled" id="teacherSubmenu">
                             <li>
-                                <a href="#">Create teacher</a>
+                                <a href="{{ route('teacher') }}">Create teacher</a>
                             </li>
                             <li>
                                 <a href="{{ route('showTeachers') }}">Teachers list</a>
@@ -107,6 +107,6 @@
 
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
-
+    @yield('script')
     </body>
 </html>
