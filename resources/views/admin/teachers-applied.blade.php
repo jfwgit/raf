@@ -83,6 +83,30 @@
             </tbody>
         </table>
     </div>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+
+            @if($page == 1)
+                <li class="page-item disabled">
+            @else
+                <li class="page-item">
+            @endif
+                <a class="page-link" href="{{route('showTeachers', ['page' => $pages - 1])}}" tabindex="-1">Previous</a>
+            </li>
+
+            @for($i = 1; $i <= $pages; $i++)
+            <li class="page-item"><a class="page-link {{$page == $i ? 'active disabled' : ''}}" href="{{route('showTeachers', ['page' => $i])}}">{{$i}}</a></li>
+            @endfor
+
+            @if($page == $pages)
+                <li class="page-item disabled">
+            @else
+                <li class="page-item">
+            @endif
+                <a class="page-link" href="{{route('showTeachers', ['page' => $pages + 1])}}">Next</a>
+            </li>
+        </ul>
+    </nav>
 @endsection
 
 @section('script')

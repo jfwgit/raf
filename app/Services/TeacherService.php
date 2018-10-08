@@ -38,13 +38,30 @@ class TeacherService
     }
 
     /**
+     * @param int $page
+     * @param int $limit
      * @return Collection
      * @throws \Exception
      */
-    public function getAll(): Collection
+    public function getAll(int $page, int $limit): Collection
     {
         try {
-            $teacher = $this->teacherRepository->getAll();
+            $teacher = $this->teacherRepository->getAll($page, $limit);
+        } catch (\Exception $e) {
+            throw new \Exception($e->getMessage());
+        }
+
+        return $teacher;
+    }
+
+    /**
+     * @return int
+     * @throws \Exception
+     */
+    public function countAll(): int
+    {
+        try {
+            $teacher = $this->teacherRepository->countAll();
         } catch (\Exception $e) {
             throw new \Exception($e->getMessage());
         }

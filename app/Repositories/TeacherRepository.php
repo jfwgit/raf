@@ -24,12 +24,29 @@ class TeacherRepository
     }
 
     /**
+     * @param int $page
+     * @param int $limit
      * @return Collection
      */
-    public function getAll(): Collection
+    public function getAll(int $page, int $limit): Collection
     {
         try {
-            $teacher = Teacher::all()->sortBy('id');
+            $teacher = Teacher::all()->sortBy('id')->forPage($page, $limit);
+        } catch (\Exception $e) {
+            throw new \UnexpectedValueException($e->getMessage());
+        }
+
+        return $teacher;
+    }
+
+    /**
+     * @return int
+     * @throws \Exception
+     */
+    public function countAll(): int
+    {
+        try {
+            $teacher = Teacher::all()->count();
         } catch (\Exception $e) {
             throw new \UnexpectedValueException($e->getMessage());
         }

@@ -22,7 +22,7 @@ Auth::routes();
 Route::group( [ 'prefix' => 'admin' , 'middleware' => 'auth'], function() {
     Route::get('/', 'AdminController@index')->name('admin');
     Route::get('schools','SchoolController@index')->name('showSchools');
-    Route::get('teachers','TeacherController@index')->name('showTeachers');
+    Route::get('teachers/{page}','TeacherController@index')->name('showTeachers');
 
     Route::group([ 'prefix' => 'school'], function() {
         Route::get('/',function () {

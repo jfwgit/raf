@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Services\SchoolService;
 use App\Services\TeacherService;
+use Exception;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator as ValidatorFacade;
 use App\Teacher;
@@ -48,20 +50,28 @@ class TeacherController extends Controller
     }
 
     /**
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @param int $page
+     * @param int $limit
+     * @return View
+     * @throws AuthorizationException|Exception
      */
-    public function index(): View
+    public function index(int $page, int $limit = 15): View
     {
         $this->authorize('view-teacher');
-        $schoolList = $this->teacherService->getAll();
 
-        return view('admin.teachers-applied')->with('teachers', $schoolList);
+        $schoolList = $this->teacherService->getAll($page, $limit);
+        $pages = ceil($this->teacherService->countAll() / $limit);
+
+        return view('admin.teachers-applied')
+            ->with('teachers', $schoolList)
+            ->with('pages', $pages)
+            ->with('page', $page);
     }
 
     /**
      * @param int $id
      * @return View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function show(int $id): View
     {
@@ -73,7 +83,7 @@ class TeacherController extends Controller
 
     /**
      * @return View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function indexCreate(): View
     {
@@ -85,7 +95,7 @@ class TeacherController extends Controller
 
     /**
      * @return View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function applied(): View
     {
@@ -98,7 +108,7 @@ class TeacherController extends Controller
      * @param Request $request
      * @return RedirectResponse
      * @throws \App\Services\Exceptions\FailSchoolCreating
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function create(Request $request)
     {

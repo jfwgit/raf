@@ -43,7 +43,7 @@
                                 <a href="{{ route('teacher') }}">Create teacher</a>
                             </li>
                             <li>
-                                <a href="{{ route('showTeachers') }}">Teachers list</a>
+                                <a href="{{ route('showTeachers', ['page' => 1]) }}">Teachers list</a>
                             </li>
                         </ul>
                     </li>
