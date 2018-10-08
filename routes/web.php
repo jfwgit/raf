@@ -40,6 +40,5 @@ Route::group( [ 'prefix' => 'admin' , 'middleware' => 'auth'], function() {
         Route::post('create','TeacherController@create')->name('createTeacher');
         Route::get('/{teacher}','TeacherController@show')->name('showTeacher');
         Route::get('/applied','TeacherController@applied')->name('appliedTeachers');
-        Route::get('/{teacher}','TeacherController@show')->name('showTeacher');
     });
 });

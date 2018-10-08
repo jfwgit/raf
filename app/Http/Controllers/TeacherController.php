@@ -91,7 +91,7 @@ class TeacherController extends Controller
     {
         $this->authorize('view-applied');
 
-        return view('admin.teachers-applied')->with('teachers', $this->teacherService->getApplied()->toArray());
+        return view('admin.teachers-applied')->with('teachers', $this->teacherService->getApplied());
     }
 
     /**
@@ -102,10 +102,6 @@ class TeacherController extends Controller
      */
     public function create(Request $request)
     {
-//         dd($request->file('cv'));
-//         dd($request->file('photo'));
-//         dd($request->file('video'));
-//         return false;
         $this->authorize('create-teacher');
 
         if ($request->get('phone')) {
