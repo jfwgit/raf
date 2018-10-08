@@ -1,3 +1,17 @@
 .inactive-svg, .active-svg, .more-info {
     height: 25px;
 }
+
+.has-error{
+    color: #ff0000;
+}
+
+.success-added {
+    display: flex;
+    justify-content: center;
+    height: 50px;
+    background: rgba(0, 128, 0, 0.7);
+    line-height: 50px;
+    color: wheat;
+    border-radius: 6px;
+}

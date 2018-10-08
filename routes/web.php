@@ -38,6 +38,7 @@ Route::group( [ 'prefix' => 'admin' , 'middleware' => 'auth'], function() {
     Route::group([ 'prefix' => 'teacher'], function() {
         Route::get('/','TeacherController@indexCreate')->name('teacher');
         Route::post('create','TeacherController@create')->name('createTeacher');
+        Route::get('/{teacher}','TeacherController@show')->name('showTeacher');
         Route::get('/applied','TeacherController@applied')->name('appliedTeachers');
         Route::get('/{teacher}','TeacherController@show')->name('showTeacher');
     });

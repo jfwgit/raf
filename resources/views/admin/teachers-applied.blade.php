@@ -38,6 +38,9 @@
 @endsection
 
 @section('content')
+    @if(session('flash_message') != false)
+        <p class="success-added">{{  session('flash_message') }}</p>
+    @endif
     <div class="container">
         <table class="table table-hover">
             <thead>
@@ -54,16 +57,24 @@
             </thead>
             <tbody>
             @foreach ($teachers as $teacher)
-                <tr data-identifier="{{ $teacher['id'] }}">
-                    <td>{{ $teacher['name'] }}</td>
-                    <td>{{ $teacher['age'] }}</td>
-                    <td>{{ $teacher['nationality'] }}</td>
-                    <td>{{ $teacher['certification'] }}</td>
-                    <td>{{ $teacher['criminal_check'] ? 'Done' : 'Not Done' }}</td>
-                    <td>{{ $teacher['desired_location'] }}</td>
-                    <td>{{ $teacher['current_location'] }}</td>
+                <tr data-identifier="{{ $teacher->id }}">
+                    <td>{{ $teacher->name }}</td>
+                    <td>{{ $teacher->age }}</td>
+                    <td>{{ $teacher->nationality }}</td>
+
+                    @if($teacher->certification == \App\Teacher::CERTIFICATION_TEFL)
+                        <td>TEFL</td>
+                    @elseif($teacher->certification == \App\Teacher::CERTIFICATION_CELTA)
+                        <td>CELTA</td>
+                    @else
+                        <td>TOEFL</td>
+                    @endif
+
+                    <td>{{ $teacher->criminal_check == \App\Teacher::CRIMINAL_DONE ? 'Done' : 'In progress' }}</td>
+                    <td>{{ $teacher->desired_location }}</td>
+                    <td>{{ $teacher->current_location }}</td>
                     <td class="text-center">
-                        <a class="more-info" href="{{ route('showTeacher', ['id' => $teacher['id']]) }}">
+                        <a class="more-info" href="{{ route('showTeacher', ['id' => $teacher->id]) }}">
                             <img src="{{ asset('icons/eye.svg') }}" class="glyphicon-eye-open more-info" />
                         </a>
                     </td>
@@ -73,3 +84,14 @@
         </table>
     </div>
 @endsection
+
+@section('script')
+<script>
+    if(($(".success-added").length)) {
+        $(".success-added").delay(3000).fadeOut( "slow", function() {
+            $(".success-added").remove();
+        });
+    }
+</script>
+@endsection
+

@@ -44,7 +44,7 @@ class SchoolController extends Controller
         $this->authorize('view-school');
         $schoolList = $this->schoolService->getAll();
 
-        return view('admin.school-list')->withSchools($schoolList->toArray());
+        return view('admin.school-list')->withSchools($schoolList);
     }
 
     /**

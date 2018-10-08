@@ -17,29 +17,29 @@
             <tbody>
             @foreach ($schools as $school)
                 <tr>
-                    <td>{{ $school['id'] }}</td>
-                    <td>{{ $school['name'] }}</td>
-                    <td>{{ $school['location'] }}</td>
-                    <td>{{ $school['teachers'] }}</td>
+                    <td>{{ $school->id }}</td>
+                    <td>{{ $school->name }}</td>
+                    <td>{{ $school->location }}</td>
+                    <td>{{ $school->teachers }}</td>
 
-                    @if( $school['status'] == 1)
+                    @if( $school->status == 1)
                         <td>Active</td>
                         <td class="text-center">
-                            <a class="inactive-svg" href="{{ route('deactivateSchool', ['id' => $school['id']]) }}">
+                            <a class="inactive-svg" href="{{ route('deactivateSchool', ['id' => $school->id]) }}">
                                 <img src="{{ asset('icons/cancel.svg') }}" class="inactive-svg" />
                             </a>
                         </td>
                     @else
                         <td>Inactive</td>
                         <td class="text-center">
-                            <a class="active-svg" href="{{ route('activateSchool', ['id' => $school['id']]) }}">
+                            <a class="active-svg" href="{{ route('activateSchool', ['id' => $school->id]) }}">
                                 <img src="{{ asset('icons/checked.svg') }}" class="active-svg" />
                             </a>
                         </td>
                     @endif
 
                     <td class="text-center">
-                        <a class="more-info" href="{{ route('showSchool', ['id' => $school['id']]) }}">
+                        <a class="more-info" href="{{ route('showSchool', ['id' => $school->id]) }}">
                             <img src="{{ asset('icons/eye.svg') }}" class="more-info" />
                         </a>
                     </td>

@@ -18,14 +18,14 @@ class AddTeacherTable extends Migration
             $table->string('photo')->nullable();
             $table->string('cv')->nullable();
             $table->mediumInteger('age')->nullable();
-            $table->boolean('gender')->nullable();
+            $table->integer('gender')->nullable();
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
             $table->smallInteger('degree')->nullable();
             $table->smallInteger('certification')->nullable();
-            $table->boolean('criminal_check')->nullable();
-            $table->boolean('notarized')->nullable();
-            $table->boolean('authenticated')->nullable();
+            $table->integer('criminal_check')->nullable();
+            $table->integer('notarized')->nullable();
+            $table->integer('authenticated')->nullable();
             $table->string('desired_location')->nullable();
             $table->string('current_location')->nullable();
             $table->string('nationality')->nullable();

@@ -38,16 +38,35 @@ class Teacher extends Model
     /**
      * Constants for manage teacher degree
      */
-    const DEGREE_NONE = 0;
     const DEGREE_BA = 1;
     const DEGREE_MA = 2;
+    const DEGREE_NONE = 3;
 
     /**
      * Constants for manage teacher certification
      */
-    const CERTIFICATION_TEFL = 0;
-    const CERTIFICATION_CELTA = 1;
-    const CERTIFICATION_TOEFL = 2;
+    const CERTIFICATION_TEFL = 1;
+    const CERTIFICATION_CELTA = 2;
+    const CERTIFICATION_TOEFL = 3;
+
+    /**
+     * Constants for manage teacher criminal status
+     */
+    const CRIMINAL_DONE = 1;
+    const CRIMINAL_NOT_DONE = 2;
+
+    /**
+     * Constants for manage teacher notorized status
+     */
+    const NOTORIZED_DONE = 1;
+    const NOTORIZED_NOT_DONE = 2;
+
+    /**
+     * Constants for manage teacher authenticated status
+     */
+    const AUTHENTICATED_DONE = 1;
+    const AUTHENTICATED_NOT_DONE = 2;
+
 
     /**
      * The table associated with the model.
