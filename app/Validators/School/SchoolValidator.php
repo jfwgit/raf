@@ -11,37 +11,12 @@ use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
  */
 class SchoolValidator
 {
-
-    /**
-     * @var BaseValidator
-     */
-    private $baseValidator;
-
-    /**
-     * @param BaseValidator $baseValidator
-     */
-    public function __construct(BaseValidator $baseValidator)
-    {
-        $this->baseValidator = $baseValidator;
-    }
-
-    /**
-     * @param Request $request
-     *
-     * @throws UnprocessableEntityHttpException
-     */
-    public function validateForSave(Request $request): void
-    {
-        $requestData = $request->all();
-        $this->baseValidator->validate($requestData, $this->forSaveRules());
-    }
-
     /**
      * Contains array with rules for saving school
      *
      * @return array
      */
-    protected function forSaveRules(): array
+    static function forSaveRules(): array
     {
         return [
             'name'      => 'required|string|min:3|max:150',

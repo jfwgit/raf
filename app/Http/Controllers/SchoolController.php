@@ -7,6 +7,7 @@ use App\Validators\School\SchoolValidator;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Validator as ValidatorFacade;
 
 /**
  * @property-read SchoolService $schoolService
@@ -69,37 +70,77 @@ class SchoolController extends Controller
     public function create(Request $request): RedirectResponse
     {
         $this->authorize('create-school');
-        $this->schoolValidator->validateForSave($request);
+        $validator = ValidatorFacade::make($request->all(), SchoolValidator::forSaveRules(), []);
+
+        if($validator->fails()) {
+            return redirect()->route('school')->withErrors($validator);
+        }
 
         $this->schoolService->create($request->all());
 
+        $request->session()->flash('flash_message', 'School '. $request->get('name') .' successfully updated');
+
         return redirect()->action('SchoolController@index');
     }
 
     /**
-     * @param $id
+     * @param int $id
+     * @param Request $request
+     * @return RedirectResponse
+     * @throws \App\Services\Exceptions\FailSchoolUpdating
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function update(int $id, Request $request): RedirectResponse
+    {
+        $this->authorize('edit-school');
+        $validator = ValidatorFacade::make($request->all(), SchoolValidator::forSaveRules(), []);
+
+        if($validator->fails()) {
+            return redirect()->action('SchoolController@show', ['id' => $id])
+                ->withErrors($validator)
+                ->with('teacherData',$request->all());
+        }
+        $school = $this->schoolService->findById($id);
+
+        $this->schoolService->update($school, $request->all());
+
+        $request->session()->flash('flash_message', 'School '. $school->name .' successfully updated');
+
+        return redirect()->action('SchoolController@index');
+    }
+
+    /**
+     * @param int $id
      * @return RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      * @throws \App\Services\Exceptions\FailSchoolUpdating
      */
-    public function deactivate($id): RedirectResponse
+    public function deactivate(int $id): RedirectResponse
     {
         $this->authorize('deactivate-school');
-        $this->schoolService->deactivate($id);
+        $school = $this->schoolService->findById($id);
+
+        $this->schoolService->deactivate($school);
+
+        session()->flash('flash_message', 'School '. $school->name .' successfully deactivated');
 
         return redirect()->action('SchoolController@index');
     }
 
     /**
-     * @param $id
+     * @param int $id
      * @return RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      * @throws \App\Services\Exceptions\FailSchoolUpdating
      */
-    public function activate($id): RedirectResponse
+    public function activate(int $id): RedirectResponse
     {
         $this->authorize('activate-school');
-        $this->schoolService->activate($id);
+        $school = $this->schoolService->findById($id);
+
+        $this->schoolService->activate($school);
+
+        session()->flash('flash_message', 'School '. $school->name .' successfully activated');
 
         return redirect()->action('SchoolController@index');
     }

@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="container">
+        <h1>Teacher creating</h1>
         <form action="{{ route('createTeacher') }}" method="POST" name="create_teacher" enctype="multipart/form-data">
             {{ csrf_field() }}
 

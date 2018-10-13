@@ -24,6 +24,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $pref_school
  * @property string $experience
  * @property int $salary_exp
+ * @property int $status
  *
  * @property-read School $school_id
  */
@@ -66,6 +67,12 @@ class Teacher extends Model
      */
     const AUTHENTICATED_DONE = 1;
     const AUTHENTICATED_NOT_DONE = 2;
+
+    /**
+     * Constants for manage teachers statuses
+     */
+    const TEACHER_INACTIVE = 0;
+    const TEACHER_ACTIVE = 1;
 
 
     /**
@@ -115,4 +122,14 @@ class Teacher extends Model
         'experience',
         'salary_exp',
     ];
+
+    public function setActiveStatus()
+    {
+        return self::TEACHER_ACTIVE;
+    }
+
+    public function setInactiveStatus()
+    {
+        return self::TEACHER_INACTIVE;
+    }
 }

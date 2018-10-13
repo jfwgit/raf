@@ -5,8 +5,11 @@ namespace App\Services;
 
 use App\Repositories\TeacherRepository;
 use App\Services\Exceptions\FailSchoolCreating;
+use App\Services\Exceptions\FailTeacherCreating;
+use App\Services\Exceptions\FailTeacherUpdating;
 use App\Teacher;
 use Illuminate\Http\File;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
@@ -21,6 +24,7 @@ class TeacherService
 {
 
     const FILE_STORAGE_NAME = 'uploads';
+
     /**
      * @var TeacherRepository
      */
@@ -98,7 +102,7 @@ class TeacherService
     /**
      * @param Request $request
      * @return Teacher
-     * @throws FailSchoolCreating
+     * @throws FailTeacherCreating
      */
     public function create(Request $request): Teacher
     {
@@ -129,10 +133,53 @@ class TeacherService
             $teacher->pref_school = $attributes['pref_school'] ? $attributes['pref_school'] : null;
             $teacher->experience = $attributes['experience'] ? $attributes['experience'] : null;
             $teacher->salary_exp = $attributes['salary_exp'] ? $attributes['salary_exp'] : null;
+            $teacher->status = Teacher::TEACHER_ACTIVE;
 
             $teacher->save();
         } catch (\Exception $e) {
-            throw new FailSchoolCreating($e->getMessage());
+            throw new FailTeacherCreating($e->getMessage());
+        }
+
+        return $teacher;
+    }
+
+    /**
+     * @param Teacher $teacher
+     * @param Request $request
+     * @return Teacher
+     * @throws FailTeacherUpdating
+     */
+    public function update(Teacher $teacher, Request $request): Teacher
+    {
+        try {
+            $attributes = $request->all();
+
+//            $files = $this->resolveFilesSaving($request);
+//
+//            $teacher->photo = $files['photo'] ?? null;
+//            $teacher->cv = $files['cv'] ?? null;
+//            $teacher->video = $files['video'] ?? null;
+
+            $teacher->name = $attributes['name'];
+            $teacher->age = $attributes['age'] ? $attributes['age'] : null;
+            $teacher->gender = $attributes['gender'] ? $attributes['gender'] : null;
+            $teacher->email = $attributes['email'] ? $attributes['email'] : null;
+            $teacher->phone = $attributes['phone'] ? $attributes['phone'] : null;
+            $teacher->degree = $attributes['degree'] ? $attributes['degree'] : null;
+            $teacher->certification = $attributes['certification'] ? $attributes['certification'] : null;
+            $teacher->criminal_check = $attributes['criminal_check'] ? $attributes['criminal_check'] : null;
+            $teacher->notarized = $attributes['notorized'] ? $attributes['notorized'] : null;
+            $teacher->authenticated = $attributes['authenticated'] ? $attributes['authenticated'] : null;
+            $teacher->desired_location = $attributes['desired'] ? $attributes['desired'] : null;
+            $teacher->current_location = $attributes['current'] ? $attributes['current'] : null;
+            $teacher->nationality = $attributes['nationality'] ? $attributes['nationality'] : null;
+            $teacher->pref_school = $attributes['pref_school'] ? $attributes['pref_school'] : null;
+            $teacher->experience = $attributes['experience'] ? $attributes['experience'] : null;
+            $teacher->salary_exp = $attributes['salary_exp'] ? $attributes['salary_exp'] : null;
+
+            $teacher->save();
+        } catch (\Exception $e) {
+            throw new FailTeacherUpdating($e->getMessage());
         }
 
         return $teacher;
@@ -199,39 +246,33 @@ class TeacherService
         return substr(md5(microtime()), random_int(0, 30), 2);
     }
 
-//    /**
-//     * @param int $id
-//     * @return RedirectResponse
-//     */
-//    public function deactivate(int $id): RedirectResponse
-//    {
-//        try {
-//            /** @var School $school */
-//            $school = $this->schoolRepository->findById($id);
-//            $school->status = $this->school->setInactiveStatus();
-//            $school->save();
-//        } catch (\Exception $e) {
-//            throw new FailSchoolUpdating($e->getMessage());
-//        }
-//
-//        return redirect()->action('SchoolController@index');
-//    }
+    /**
+     * @param Teacher $teacher
+     * @return void
+     * @throws FailTeacherUpdating
+     */
+    public function deactivate(Teacher $teacher): void
+    {
+        try {
+            $teacher->status = $this->teacher->setInactiveStatus();
+            $teacher->save();
+        } catch (\Exception $e) {
+            throw new FailTeacherUpdating($e->getMessage());
+        }
+    }
 
-//    /**
-//     * @param int $id
-//     * @return RedirectResponse
-//     */
-//    public function activate(int $id): RedirectResponse
-//    {
-//        try {
-//            /** @var School $school */
-//            $school = $this->schoolRepository->findById($id);
-//            $school->status = $this->school->setActiveStatus();
-//            $school->save();
-//        } catch (\Exception $e) {
-//            throw new FailSchoolUpdating($e->getMessage());
-//        }
-//
-//        return redirect()->action('SchoolController@index');
-//    }
+    /**
+     * @param Teacher $teacher
+     * @return void
+     * @throws FailTeacherUpdating
+     */
+    public function activate(Teacher $teacher): void
+    {
+        try {
+            $teacher->status = $this->teacher->setActiveStatus();
+            $teacher->save();
+        } catch (\Exception $e) {
+            throw new FailTeacherUpdating($e->getMessage());
+        }
+    }
 }

@@ -1,7 +1,10 @@
 @extends('admin.admin')
 
 @section('content')
-    <div class="container">
+    @if(Session::has('flash_message'))
+        <p class="success-added">{{ session('flash_message') }}</p>
+    @endif
+    <div class="container-fluid" style="width: 90%!important">
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -48,4 +51,14 @@
             </tbody>
         </table>
     </div>
+@endsection
+
+@section('script')
+    <script>
+        if(($(".success-added").length)) {
+            $(".success-added").delay(3000).fadeOut( "slow", function() {
+                $(".success-added").remove();
+            });
+        }
+    </script>
 @endsection

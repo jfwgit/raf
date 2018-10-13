@@ -31,6 +31,7 @@ Route::group( [ 'prefix' => 'admin' , 'middleware' => 'auth'], function() {
 
         Route::post('create','SchoolController@create')->name('createSchool');
         Route::get('/{school}','SchoolController@show')->name('showSchool');
+        Route::post('/edit/{school}','SchoolController@update')->name('updateSchool');
         Route::get('/deactivate/{school}','SchoolController@deactivate')->name('deactivateSchool');
         Route::get('/activate/{school}','SchoolController@activate')->name('activateSchool');
     });
@@ -39,6 +40,9 @@ Route::group( [ 'prefix' => 'admin' , 'middleware' => 'auth'], function() {
         Route::get('/','TeacherController@indexCreate')->name('teacher');
         Route::post('create','TeacherController@create')->name('createTeacher');
         Route::get('/{teacher}','TeacherController@show')->name('showTeacher');
-        Route::get('/applied','TeacherController@applied')->name('appliedTeachers');
+        Route::post('/edit/{teacher}','TeacherController@update')->name('updateTeacher');
+        Route::get('view/applied','TeacherController@applied')->name('appliedTeachers');
+        Route::get('/deactivate/{teacher}','TeacherController@deactivate')->name('deactivateTeacher');
+        Route::get('/activate/{teacher}','TeacherController@activate')->name('activateTeacher');
     });
 });

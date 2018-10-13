@@ -89,40 +89,56 @@ class SchoolService
     }
 
     /**
-     * @param int $id
-     * @return RedirectResponse
+     * @param School $school
+     * @param array $attributes
+     * @return School
      * @throws FailSchoolUpdating
      */
-    public function deactivate(int $id): RedirectResponse
+    public function update(School $school, array $attributes): School
     {
         try {
-            /** @var School $school */
-            $school = $this->schoolRepository->findById($id);
+
+            $school->name = $attributes['name'];
+            $school->data = $attributes['data'];
+            $school->location = $attributes['location'];
+            $school->teachers = $attributes['teachers'];
+
+            $school->save();
+        } catch (\Exception $e) {
+            throw new FailSchoolUpdating($e->getMessage());
+        }
+
+        return $school;
+    }
+
+    /**
+     * @param School $school
+     * @return void
+     * @throws FailSchoolUpdating
+     */
+    public function deactivate(School $school): void
+    {
+        try {
             $school->status = $this->school->setInactiveStatus();
             $school->save();
         } catch (\Exception $e) {
             throw new FailSchoolUpdating($e->getMessage());
         }
-
-        return redirect()->action('SchoolController@index');
     }
 
     /**
-     * @param int $id
-     * @return RedirectResponse
+     * @param School $school
+     * @return void
      * @throws FailSchoolUpdating
      */
-    public function activate(int $id): RedirectResponse
+    public function activate(School $school): void
     {
         try {
             /** @var School $school */
-            $school = $this->schoolRepository->findById($id);
             $school->status = $this->school->setActiveStatus();
             $school->save();
         } catch (\Exception $e) {
             throw new FailSchoolUpdating($e->getMessage());
         }
-
-        return redirect()->action('SchoolController@index');
     }
 }

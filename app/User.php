@@ -64,7 +64,10 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function isAdmin()
+    /**
+     * @return bool
+     */
+    public function isAdmin(): bool
     {
         return $this->role === self::ADMIN_ROLE_ADMIN;
     }
