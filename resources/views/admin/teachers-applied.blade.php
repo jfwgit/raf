@@ -131,7 +131,7 @@
                 <th scope="col">Cur. location</th>
                 <th class="text-center" scope="col">Status</th>
                 <th class="text-center" scope="col">Change status</th>
-                <th class="text-center" scope="col">Information</th>
+                <th class="text-center" scope="col">Edit info</th>
             </tr>
             </thead>
             <tbody>
@@ -201,8 +201,8 @@
 
             </li>
         </ul>
-    @endif
     </nav>
+    @endif
 @endsection
 
 @section('script')

@@ -13,27 +13,24 @@
             @if ($errors->has('name'))
                 <p class="has-error">{{ $errors->first('name') }}</p>
             @endif
-            {{--<div class="form-group">--}}
-                {{--<label for="photo">Photo</label>--}}
-                {{--<input type="file" name="photo" class="form-control" id="photo" />--}}
-            {{--</div>--}}
-            {{--@if ($errors->has('photo'))--}}
-                {{--<p class="has-error">{{ $errors->first('photo') }}</p>--}}
-            {{--@endif--}}
-            {{--<div class="form-group">--}}
-                {{--<label for="cv">CV</label>--}}
-                {{--<input type="file" name="cv" class="form-control" id="cv" />--}}
-            {{--</div>--}}
-            {{--@if ($errors->has('cv'))--}}
-                {{--<p class="has-error">{{ $errors->first('cv') }}</p>--}}
-            {{--@endif--}}
-            {{--<div class="form-group">--}}
-                {{--<label for="video">Introducing video (Max File size ~ 30MB)</label>--}}
-                {{--<input type="file" name="video" class="form-control" id="video" />--}}
-            {{--</div>--}}
-            {{--@if ($errors->has('video'))--}}
-                {{--<p class="has-error">{{ $errors->first('video') }}</p>--}}
-            {{--@endif--}}
+
+            <div class="individual-content">
+                @if($linkPhoto != '/storage/')
+                    <img src="{{$linkPhoto}}" >
+                @endif
+
+                @if($linkVideo != '/storage/')
+                    <video controls width="500px" height="400px">
+                        <source src="{{$linkVideo}}" type="video/mp4">
+                    </video>
+                @endif
+
+                @if($linkCV != '/storage/')
+                    <a href="{{$linkCV}}" download>CV</a>
+                @endif
+
+            </div>
+
             <div class="form-group">
                 <label for="school_teachers">Age</label>
                 <input type="text" name="age" class="form-control" id="age" placeholder="Enter teacher's age" value="{{ $teacher->age }}">
@@ -122,6 +119,7 @@
             @if ($errors->has('experience'))
                 <p class="has-error">{{ $errors->first('experience')}}</p>
             @endif
+
             <div class="form-group">
                 <label for="salary">Salary expectation</label>
                 <input type="text" name="salary_exp" class="form-control" id="salary" placeholder="Enter teacher's salary expectation" value="{{$teacher->salary_exp}}">
@@ -129,6 +127,7 @@
             @if ($errors->has('salary_exp'))
                 <p class="has-error">{{ $errors->first('salary_exp') }}</p>
             @endif
+
             <button type="submit" class="btn btn-success">Submit</button>
             <button type="button" style="float: right" class="btn btn-primary"><a href="{{route('showTeachers', ['page' => 1])}}">Go back</a></button>
 

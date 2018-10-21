@@ -59,7 +59,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="{{ route('appliedTeachers') }}">List of teachers applied</a>
+                        <a href="{{ route('appliedTeachers', ['page' => 1]) }}">List of teachers applied</a>
                     </li>
                 </ul>
 

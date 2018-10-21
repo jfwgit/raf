@@ -14,7 +14,7 @@
                     <th scope="col">Teachers</th>
                     <th scope="col">Status</th>
                     <th class="text-center" scope="col">Change status</th>
-                    <th class="text-center" scope="col">Information</th>
+                    <th class="text-center" scope="col">Edit info</th>
                 </tr>
             </thead>
             <tbody>
