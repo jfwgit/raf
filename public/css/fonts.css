@@ -1,0 +1,23 @@
+@font-face {
+    font-family: "HelveticaNeue";
+    src: url("../fonts/HelveticaNeue.eot");
+    src: url("../fonts/HelveticaNeue.ttf");
+    src: url("../fonts/HelveticaNeue.woff");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "HelveticaNeue";
+    src: url("../fonts/HelveticaNeue-Bold.eot");
+    src: url("../fonts/HelveticaNeue-Bold.ttf");
+    src: url("../fonts/HelveticaNeue-Bold.woff");
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: "MyriadPro";
+    src: url("../fonts/MyriadPro-Regular.eot");
+    src: url("../fonts/MyriadPro-Regular.ttf");
+    src: url("../fonts/MyriadPro-Regular.woff");
+    font-weight: 400;
+}
