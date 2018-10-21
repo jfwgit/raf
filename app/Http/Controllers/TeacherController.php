@@ -15,7 +15,6 @@ use App\Validators\Teacher\TeacherValidator;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
-use Optimus\Bruno\EloquentBuilderTrait;
 
 /**
  * @property-read Teacher $teacher
@@ -26,7 +25,6 @@ use Optimus\Bruno\EloquentBuilderTrait;
  */
 class TeacherController extends Controller
 {
-    use EloquentBuilderTrait;
     /**
      * @var TeacherService
      */
