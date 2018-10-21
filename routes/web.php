@@ -22,7 +22,7 @@ Auth::routes();
 Route::group( [ 'prefix' => 'admin' , 'middleware' => 'auth'], function() {
     Route::get('/', 'AdminController@index')->name('admin');
     Route::get('schools','SchoolController@index')->name('showSchools');
-    Route::get('teachers/{page}','TeacherController@index')->name('showTeachers');
+    Route::get('teachers/{page?}/{parameters?}','TeacherController@index')->name('showTeachers');
 
     Route::group([ 'prefix' => 'school'], function() {
         Route::get('/',function () {
@@ -41,7 +41,7 @@ Route::group( [ 'prefix' => 'admin' , 'middleware' => 'auth'], function() {
         Route::post('create','TeacherController@create')->name('createTeacher');
         Route::get('/{teacher}','TeacherController@show')->name('showTeacher');
         Route::post('/edit/{teacher}','TeacherController@update')->name('updateTeacher');
-        Route::get('view/applied','TeacherController@applied')->name('appliedTeachers');
+        Route::get('view/applied/{page}','TeacherController@applied')->name('appliedTeachers');
         Route::get('/deactivate/{teacher}','TeacherController@deactivate')->name('deactivateTeacher');
         Route::get('/activate/{teacher}','TeacherController@activate')->name('activateTeacher');
     });

@@ -74,6 +74,18 @@ class Teacher extends Model
     const TEACHER_INACTIVE = 0;
     const TEACHER_ACTIVE = 1;
 
+    /**
+     * Constants for manage teacher nationality
+     */
+    const TEACHER_NATIVE_SELECTED = 1;
+
+    const TEACHER_NATIVE = [
+        'United States of America',
+        'Canada',
+        'New Zealand',
+        'Australia'
+    ];
+
 
     /**
      * The table associated with the model.

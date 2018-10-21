@@ -4,12 +4,10 @@ namespace App\Services;
 
 
 use App\Repositories\TeacherRepository;
-use App\Services\Exceptions\FailSchoolCreating;
 use App\Services\Exceptions\FailTeacherCreating;
 use App\Services\Exceptions\FailTeacherUpdating;
 use App\Teacher;
 use Illuminate\Http\File;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
@@ -44,13 +42,14 @@ class TeacherService
     /**
      * @param int $page
      * @param int $limit
+     * @param array $options
      * @return Collection
      * @throws \Exception
      */
-    public function getAll(int $page, int $limit): Collection
+    public function getAll(int $page, int $limit, array $options): Collection
     {
         try {
-            $teacher = $this->teacherRepository->getAll($page, $limit);
+            $teacher = $this->teacherRepository->getAll($page, $limit, $options);
         } catch (\Exception $e) {
             throw new \Exception($e->getMessage());
         }
@@ -62,16 +61,32 @@ class TeacherService
      * @return int
      * @throws \Exception
      */
-    public function countAll(): int
+    public function countAll(array $options = []): int
     {
         try {
-            $teacher = $this->teacherRepository->countAll();
+            $teacher = $this->teacherRepository->countAll($options);
         } catch (\Exception $e) {
             throw new \Exception($e->getMessage());
         }
 
         return $teacher;
     }
+
+    /**
+     * @return int
+     * @throws \Exception
+     */
+    public function countAllApplied(): int
+    {
+        try {
+            $teacher = $this->teacherRepository->countAllApplied();
+        } catch (\Exception $e) {
+            throw new \Exception($e->getMessage());
+        }
+
+        return $teacher;
+    }
+
 
     /**
      * @param int $id
@@ -88,10 +103,10 @@ class TeacherService
         return $teacher;
     }
 
-    public function getApplied(): ?Collection
+    public function getApplied(int $page, int $limit = 15): ?Collection
     {
         try {
-            $teacher = $this->teacherRepository->getApplied();
+            $teacher = $this->teacherRepository->getApplied($page, $limit);
         } catch (\Exception $e) {
             throw new \UnexpectedValueException($e->getMessage());
         }
@@ -118,21 +133,21 @@ class TeacherService
             $teacher->video = $files['video'] ?? null;
 
             $teacher->name = $attributes['name'];
-            $teacher->age = $attributes['age'] ? $attributes['age'] : null;
-            $teacher->gender = $attributes['gender'] ? $attributes['gender'] : null;
-            $teacher->email = $attributes['email'] ? $attributes['email'] : null;
-            $teacher->phone = $attributes['phone'] ? $attributes['phone'] : null;
-            $teacher->degree = $attributes['degree'] ? $attributes['degree'] : null;
-            $teacher->certification = $attributes['certification'] ? $attributes['certification'] : null;
-            $teacher->criminal_check = $attributes['criminal_check'] ? $attributes['criminal_check'] : null;
-            $teacher->notarized = $attributes['notorized'] ? $attributes['notorized'] : null;
-            $teacher->authenticated = $attributes['authenticated'] ? $attributes['authenticated'] : null;
-            $teacher->desired_location = $attributes['desired'] ? $attributes['desired'] : null;
-            $teacher->current_location = $attributes['current'] ? $attributes['current'] : null;
-            $teacher->nationality = $attributes['nationality'] ? $attributes['nationality'] : null;
-            $teacher->pref_school = $attributes['pref_school'] ? $attributes['pref_school'] : null;
-            $teacher->experience = $attributes['experience'] ? $attributes['experience'] : null;
-            $teacher->salary_exp = $attributes['salary_exp'] ? $attributes['salary_exp'] : null;
+            $teacher->age = $attributes['age'] ?? null;
+            $teacher->gender = $attributes['gender'] ?? null;
+            $teacher->email = $attributes['email'] ?? null;
+            $teacher->phone = $attributes['phone'] ?? null;
+            $teacher->degree = $attributes['degree'] ?? null;
+            $teacher->certification = $attributes['certification'] ?? null;
+            $teacher->criminal_check = $attributes['criminal_check'] ?? null;
+            $teacher->notarized = $attributes['notorized'] ?? null;
+            $teacher->authenticated = $attributes['authenticated'] ?? null;
+            $teacher->desired_location = $attributes['desired'] ?? null;
+            $teacher->current_location = $attributes['current'] ?? null;
+            $teacher->nationality = $attributes['nationality'] ?? null;
+            $teacher->pref_school = $attributes['pref_school'] ?? null;
+            $teacher->experience = $attributes['experience'] ?? null;
+            $teacher->salary_exp = $attributes['salary_exp'] ?? null;
             $teacher->status = Teacher::TEACHER_ACTIVE;
 
             $teacher->save();
@@ -154,28 +169,22 @@ class TeacherService
         try {
             $attributes = $request->all();
 
-//            $files = $this->resolveFilesSaving($request);
-//
-//            $teacher->photo = $files['photo'] ?? null;
-//            $teacher->cv = $files['cv'] ?? null;
-//            $teacher->video = $files['video'] ?? null;
-
             $teacher->name = $attributes['name'];
-            $teacher->age = $attributes['age'] ? $attributes['age'] : null;
-            $teacher->gender = $attributes['gender'] ? $attributes['gender'] : null;
-            $teacher->email = $attributes['email'] ? $attributes['email'] : null;
-            $teacher->phone = $attributes['phone'] ? $attributes['phone'] : null;
-            $teacher->degree = $attributes['degree'] ? $attributes['degree'] : null;
-            $teacher->certification = $attributes['certification'] ? $attributes['certification'] : null;
-            $teacher->criminal_check = $attributes['criminal_check'] ? $attributes['criminal_check'] : null;
-            $teacher->notarized = $attributes['notorized'] ? $attributes['notorized'] : null;
-            $teacher->authenticated = $attributes['authenticated'] ? $attributes['authenticated'] : null;
-            $teacher->desired_location = $attributes['desired'] ? $attributes['desired'] : null;
-            $teacher->current_location = $attributes['current'] ? $attributes['current'] : null;
-            $teacher->nationality = $attributes['nationality'] ? $attributes['nationality'] : null;
-            $teacher->pref_school = $attributes['pref_school'] ? $attributes['pref_school'] : null;
-            $teacher->experience = $attributes['experience'] ? $attributes['experience'] : null;
-            $teacher->salary_exp = $attributes['salary_exp'] ? $attributes['salary_exp'] : null;
+            $teacher->age = $attributes['age'] ?? null;
+            $teacher->gender = $attributes['gender'] ?? null;
+            $teacher->email = $attributes['email'] ?? null;
+            $teacher->phone = $attributes['phone'] ?? null;
+            $teacher->degree = $attributes['degree'] ?? null;
+            $teacher->certification = $attributes['certification'] ?? null;
+            $teacher->criminal_check = $attributes['criminal_check'] ?? null;
+            $teacher->notarized = $attributes['notorized'] ?? null;
+            $teacher->authenticated = $attributes['authenticated'] ?? null;
+            $teacher->desired_location = $attributes['desired'] ?? null;
+            $teacher->current_location = $attributes['current'] ?? null;
+            $teacher->nationality = $attributes['nationality'] ?? null;
+            $teacher->pref_school = $attributes['pref_school'] ?? null;
+            $teacher->experience = $attributes['experience'] ?? null;
+            $teacher->salary_exp = $attributes['salary_exp'] ?? null;
 
             $teacher->save();
         } catch (\Exception $e) {

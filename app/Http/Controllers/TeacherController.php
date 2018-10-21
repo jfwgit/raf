@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Services\Exceptions\FailTeacherCreating;
 use App\Services\Exceptions\FailTeacherUpdating;
 use App\Services\SchoolService;
+use App\Services\SendPulseService;
 use App\Services\TeacherService;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
@@ -14,14 +15,18 @@ use App\Validators\Teacher\TeacherValidator;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Optimus\Bruno\EloquentBuilderTrait;
+
 /**
  * @property-read Teacher $teacher
  * @property-read TeacherService $teacherService
  * @property-read TeacherValidator $teacherValidator
  * @property-read SchoolService $schoolService
+ * @property-read SendPulseService $sendPulseService
  */
 class TeacherController extends Controller
 {
+    use EloquentBuilderTrait;
     /**
      * @var TeacherService
      */
@@ -42,32 +47,41 @@ class TeacherController extends Controller
      */
     protected $schoolService;
 
+    /**
+     * @var SendPulseService
+     */
+    protected $sendPulseService;
+
     public function __construct(
+        Teacher $teacher,
         SchoolService $schoolService,
         TeacherService $teacherService,
         TeacherValidator $teacherValidator,
-        Teacher $teacher
+        SendPulseService $sendPulseService
     ) {
         $this->teacher = $teacher;
+        $this->schoolService = $schoolService;
         $this->teacherService = $teacherService;
         $this->teacherValidator = $teacherValidator;
-        $this->schoolService = $schoolService;
+        $this->sendPulseService = $sendPulseService;
     }
 
     /**
      * @param int $page
+     * @param Request $request
      * @param int $limit
      * @return View
-     * @throws AuthorizationException|Exception
+     * @throws AuthorizationException
+     * @throws Exception
      */
-    public function index(int $page, int $limit = 15): View
+    public function index(int $page, Request $request, int $limit = 15): View
     {
         $this->authorize('view-teacher');
 
-        $schoolList = $this->teacherService->getAll($page, $limit);
-        $pages = ceil($this->teacherService->countAll() / $limit);
+        $schoolList = $this->teacherService->getAll($page, $limit, $request->query());
+        $pages = ceil($this->teacherService->countAll($request->query()) / $limit);
 
-        return view('admin.teachers-applied')
+        return view('admin.teachers-list')
             ->with('teachers', $schoolList)
             ->with('pages', $pages)
             ->with('page', $page);
@@ -119,9 +133,14 @@ class TeacherController extends Controller
         $this->authorize('view-teacher');
         $teacher = $this->teacherService->findById($id);
         $schoolList = $this->schoolService->getAll();
+
+
         return view('admin.teacher-page')
             ->with('teacher', $teacher)
-            ->with('schools', $schoolList);
+            ->with('schools', $schoolList)
+            ->with('linkPhoto', '/storage/'. $teacher->photo ?? '')
+            ->with('linkCV', '/storage/'. $teacher->cv ?? '')
+            ->with('linkVideo', '/storage/'. $teacher->video ?? '');
     }
 
     /**
@@ -137,27 +156,29 @@ class TeacherController extends Controller
     }
 
     /**
+     * @param int $page
      * @param int $limit
      * @return View
      * @throws AuthorizationException
      * @throws Exception
      */
-    public function applied(int $limit = 15): View
+    public function applied(int $page, int $limit = 15): View
     {
         $this->authorize('view-applied');
 
-        $pages = ceil($this->teacherService->countAll() / $limit);
+        $pages = ceil($this->teacherService->countAllApplied() / $limit);
 
         return view('admin.teachers-applied')
-            ->with('teachers', $this->teacherService->getApplied())
+            ->with('teachers', $this->teacherService->getApplied($page, $limit))
+            ->with('page', $page)
             ->with('pages', $pages);
     }
 
     /**
      * @param Request $request
      * @return RedirectResponse
-     * @throws FailTeacherCreating
      * @throws AuthorizationException
+     * @throws FailTeacherCreating
      */
     public function create(Request $request): RedirectResponse
     {
@@ -174,6 +195,8 @@ class TeacherController extends Controller
         }
 
         $this->teacherService->create($request);
+        #TODO implement mail service
+//        $this->sendPulseService->send($request->get('name'));
 
         $request->session()->flash('flash_message','Teacher successfully added.');
 
