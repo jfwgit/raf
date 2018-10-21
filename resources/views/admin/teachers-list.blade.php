@@ -1,46 +1,54 @@
 @extends('admin.admin')
 
 @section('filter-bar')
-<div class="container" >
+<div class="container col-md-11" style="display: flex">
     <form action="{{ route('showTeachers', ['page' => 1]) }}" method="GET" name="filter_teachers">
         <div style="display: inline-flex">
             <div class="col-md-3">
                 <label for="criminal_check">Criminal check</label>
                 <select class="custom-select custom-select-md mb-3" name="criminal_check" id="criminal_check">
-                    <option value="1">Done</option>
-                    <option value="2">Not done in progress</option>
+                    <option value="1" {{(isset($filter['criminal_check']) && $filter['criminal_check'] == 1) ? 'selected' : ''}}>Done</option>
+                    <option value="2" {{(isset($filter['criminal_check']) && $filter['criminal_check'] == 2) ? 'selected' : ''}}>Not done in progress</option>
                 </select>
 
             </div>
             <div class="col-md-3">
                 <label for="criminal_check">Nationality</label>
                 <select class="custom-select custom-select-md mb-3" name="nationality" id="criminal_check">
-                    <option value="1">Native</option>
-                    <option value="2">Other</option>
+                    <option value="1" {{(isset($filter['nationality']) && $filter['nationality'] == 1) ? 'selected' : ''}}>Native</option>
+                    <option value="2" {{(isset($filter['nationality']) && $filter['nationality'] == 2) ? 'selected' : ''}}>Other</option>
                 </select>
             </div>
             <div class="col-md-3">
                 <label for="certification">Certification</label>
                 <select class="custom-select custom-select-md mb-3" name="certification" id="certification">
-                    <option value="1">TEFL</option>
-                    <option value="2">CELTA</option>
-                    <option value="3">TOEFL</option>
+                    <option value="1" {{(isset($filter['certification']) && $filter['certification'] == 1) ? 'selected' : ''}} >TEFL</option>
+                    <option value="2" {{(isset($filter['certification']) && $filter['certification'] == 2) ? 'selected' : ''}} >CELTA</option>
+                    <option value="3" {{(isset($filter['certification']) && $filter['certification'] == 3) ? 'selected' : ''}} >TOEFL</option>
                 </select>
             </div>
             <div class="col-md-3">
                 <label for="degree">Degree</label>
                 <select class="custom-select custom-select-md mb-3" name="degree" id="degree">
-                    <option value="1">BA</option>
-                    <option value="2">MA</option>
-                    <option value="3">None</option>
+                    <option value="1" {{(isset($filter['degree']) && $filter['degree'] == 1) ? 'selected' : ''}} >BA</option>
+                    <option value="2" {{(isset($filter['degree']) && $filter['degree'] == 2) ? 'selected' : ''}} >MA</option>
+                    <option value="3" {{(isset($filter['degree']) && $filter['degree'] == 3) ? 'selected' : ''}} >None</option>
                 </select>
             </div>
             <div>
                 <label for="324">&nbsp;</label>
-                <button name="nbsp" type="submit" class="btn btn-success">Accept filter</button>
+                <button type="submit" class="btn btn-success">Accept filter</button>
+            </div>
+    </form>
+    <form action="{{ route('showTeachers', ['page' => 1]) }}" method="GET" name="filter_teachers_remove" >
+        <div style="display: inline-flex">
+            <div>
+                <label for="123">&nbsp;</label>
+                <button type="submit" class="btn btn-danger" style="margin-left: 10px">Remove filter</button>
             </div>
         </div>
     </form>
+</div>
 </div>
 @endsection
 

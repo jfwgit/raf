@@ -84,7 +84,8 @@ class TeacherController extends Controller
         return view('admin.teachers-list')
             ->with('teachers', $schoolList)
             ->with('pages', $pages)
-            ->with('page', $page);
+            ->with('page', $page)
+            ->with('filter', $request->query());
     }
 
     /**
