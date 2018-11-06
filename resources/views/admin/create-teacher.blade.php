@@ -108,9 +108,11 @@
 
             <label for="pref_school">Preferred school</label>
             <select class="custom-select custom-select-md mb-3" name="pref_school" id="pref_school">
-                @foreach( $schools as $school)
-                    <option value="{{ $school->id }}">{{ $school->name }}</option>
-                @endforeach
+                <option value="Kindergarten">Kindergarten</option>
+                <option value="Primary school">Primary school</option>
+                <option value="International school">International school</option>
+                <option value="Training center">Training center</option>
+                <option value="Other">Other</option>
             </select>
 
             <div class="form-group">

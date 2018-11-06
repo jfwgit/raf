@@ -17,7 +17,6 @@ use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 /**
- * @property-read Teacher $teacher
  * @property-read TeacherService $teacherService
  * @property-read TeacherValidator $teacherValidator
  * @property-read SchoolService $schoolService
@@ -30,10 +29,6 @@ class TeacherController extends Controller
      */
     protected $teacherService;
 
-    /**
-     * @var Teacher
-     */
-    protected $teacher;
 
     /**
      * @var TeacherValidator
@@ -51,13 +46,11 @@ class TeacherController extends Controller
     protected $sendPulseService;
 
     public function __construct(
-        Teacher $teacher,
         SchoolService $schoolService,
         TeacherService $teacherService,
         TeacherValidator $teacherValidator,
         SendPulseService $sendPulseService
     ) {
-        $this->teacher = $teacher;
         $this->schoolService = $schoolService;
         $this->teacherService = $teacherService;
         $this->teacherValidator = $teacherValidator;

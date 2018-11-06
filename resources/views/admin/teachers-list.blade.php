@@ -8,7 +8,7 @@
                 <label for="criminal_check">Criminal check</label>
                 <select class="custom-select custom-select-md mb-3" name="criminal_check" id="criminal_check">
                     <option value="1" {{(isset($filter['criminal_check']) && $filter['criminal_check'] == 1) ? 'selected' : ''}}>Done</option>
-                    <option value="2" {{(isset($filter['criminal_check']) && $filter['criminal_check'] == 2) ? 'selected' : ''}}>Not done in progress</option>
+                    <option value="2" {{(isset($filter['criminal_check']) && $filter['criminal_check'] == 2) ? 'selected' : ''}}>Not done</option>
                 </select>
 
             </div>

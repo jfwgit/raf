@@ -103,7 +103,7 @@
 
                     <div class="btn__wrap btn--blue">
 
-                        <a href="#" class="btn" target="_blank">check here</a>
+                        <a href="#" class="btn pop--up teacher">check here</a>
 
                     </div>
 
@@ -243,21 +243,46 @@
 
                         <div class="img__wrap">
 
+                            <img src="{{asset('img/Anezka.jpg')}}" alt="img" style="height: 100%;width: 100%;">
+
+                        </div>
+
+                        <div class="title__wrap">
+
+                            <h3>COO - FOUNDER - CEO</h3>
+
+                        </div>
+
+                        <div class="text">
+
+                            <p>My partners and I started Teacher’s Home in 2017.
+
+                                My husband and I have been living in China for almost five years. We were both teaching in China and experienced most of the obstacles that first time teachers in China face when arriving. I have worked in all the different types of schools in China and I have travelled all over. China is breathtakingly beautiful! I especially love the rich culture and heritage and of course the food! These are some of the reasons why I would like to share my experience and guide teachers to adapt more easily to their new surroundings.
+
+                                If you are a teacher who is ready for a new adventure, you are in the right place. We will guide and support you every step of the way. Our team is dedicated and hard-working!</p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="slide">
+
+                        <div class="img__wrap">
+
                             <img src="{{asset('img/Jacky.jpg')}}" alt="img" style="height: 100%;width: 100%;">
 
                         </div>
 
                         <div class="title__wrap">
 
-                            <h3>CEO</h3>
+                            <h3>CFO - CO - FOUNDER</h3>
 
                         </div>
 
                         <div class="text">
 
-                            <p>Hello Guys,My name is Jacky from China,Im the founder of Theachers home China,Teachers home China platform is used for helping all candidates from all around the world who want’s come to China to teach english ,and helpe all chinese company to find english teachers in a quickest way,wherever you are,If you want to find a great english teaching job in China, Plz contact us right now.
-                                We welcome all the native english teacher’s from all over the world are willing come to China obtain employment .
-                                We wish every one of our client could enjoying staying in China ,having a pleasant working time and best success for you.</p>
+                            <p>Hello Guys, My name is Jacky and I am from China.   I am a co-founder of Teachers home, Teachers home platform is used for helping qualified candidates to secure great jobs and help all Chinese schools find English teachers in the quickest way.
+                                We wish all of our teachers have a comfortable place in China, having a pleasant working time and best success for you.</p>
 
                         </div>
 
@@ -298,39 +323,13 @@
 
                         <div class="title__wrap">
 
-                            <h3>Co-Founder and COO</h3>
+                            <h3>COO - CO-FOUNDER</h3>
 
                         </div>
 
                         <div class="text">
 
                             <p>Teacher’s Home was started in 2017 by myself, my wife and our business partner. While spending time in Cambodia at an orphanage, I discovered a love and passion for teaching, and helping others. After more than five years of living and working in China I have not looked back! We started Teacher’s Home with the goal of connecting qualified teachers with some of the best kindergartens, public schools, international schools and training centres all across China. We make sure that our teachers are employed legally, with competitive salaries and excellent working conditions. Our team strives to better the quality of teaching and we at Teacher’s Home firmly believe that every child has the right to quality education and an enriching educational environment.</p>
-
-                        </div>
-
-                    </div>
-
-                    <div class="slide">
-
-                        <div class="img__wrap">
-
-                            <img src="{{asset('img/Anezka.jpg')}}" alt="img" style="height: 100%;width: 100%;">
-
-                        </div>
-
-                        <div class="title__wrap">
-
-                            <h3>Co-Founder and CEO</h3>
-
-                        </div>
-
-                        <div class="text">
-
-                            <p>My partners and I started Teacher’s Home in 2017.
-
-                                My husband and I have been living in China for almost five years. We were both teaching in China and experienced most of the obstacles that first time teachers in China face when arriving. I have worked in all the different types of schools in China and I have travelled all over. China is breathtakingly beautiful! I especially love the rich culture and heritage and of course the food! These are some of the reasons why I would like to share my experience and guide teachers to adapt more easily to their new surroundings.
-
-                                If you are a teacher who is ready for a new adventure, you are in the right place. We will guide and support you every step of the way. Our team is dedicated and hard-working!</p>
 
                         </div>
 
@@ -369,6 +368,8 @@
                         <li class="list__item" data-name="guangzhou"><a href="#">guangzhou</a></li>
 
                         <li class="list__item" data-name="chengdu"><a href="#">chengdu</a></li>
+
+                        <li class="list__item" data-name="shanghai"><a href="#">shanghai</a></li>
 
                     </ul>
 
@@ -457,7 +458,7 @@
 
                                 <div class="descr text">
 
-                                    <h3>beijing</h3>
+                                    <h3>guangzhou</h3>
 
                                     <p>Guangzhou (Canton) is a mighty manufacturing base, drawing millions from the countryside to work in its factories. Vast quantities of clothing, electronics, plastic goods, and toys are shipped from Guangzhou all over the world. A city that has sprung up recently with China's economic boom, it hosts the biannual China Import and Export Fair or Canton Fair.</p>
 
@@ -481,6 +482,28 @@
                                     <h3>chengdu</h3>
 
                                     <p>Chengdu is an exception among large Chinese cities. The largest city in mostly mountainous or arid West China, it is a concentration of the population of the fertile Sichuan Basin. The pace of life is the most relaxed of China's large cities.</p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="slide" data-name="shanghai">
+
+                            <div class="row d-flex">
+
+                                <div class="img__wrap">
+
+                                    <img src="{{asset('img/Shanghai.jpg')}}" alt="img">
+
+                                </div>
+
+                                <div class="descr text">
+
+                                    <h3>Shanghai</h3>
+
+                                    <p>Shanghai is the undisputed most populous and wealthiest city in China. With a name synonymous with world trade, Shanghai has the largest and busiest port in terms of containers and cargo tonnage, a grand business district, two large airports (Pudong and Hongqiao), the world's fastest train (the Maglev), and a network of elevated highways.</p>
 
                                 </div>
 
@@ -799,7 +822,8 @@
 
             </div>
 
-            <form action="/" novalidate="">
+            <form action="{{ route('createTeacherAsGuest') }}" method="POST" name="create_teacher" enctype="multipart/form-data">
+                {{ csrf_field() }}
 
                 <div class="row">
 
@@ -807,13 +831,16 @@
 
                     <label class="input__wrap">
 
-                        <input type="text" placeholder="Input text field">
+                        <input type="text" name="name" placeholder="Input text field">
 
                         <span class="input--ico" style="background-image: {{asset("icons/user.svg")}})"></span>
 
                     </label>
 
                 </div>
+                @if ($errors->has('name'))
+                    <p class="has-error">{{ $errors->first('name') }}</p>
+                @endif
 
                 <div class="row">
 
@@ -821,7 +848,7 @@
 
                     <label class="input__wrap file">
 
-                        <input min="1" max="1"  type="file" class="file">
+                        <input min="1" max="1" name="photo" type="file" class="file">
 
                         <span class="input--ico" style="background-image: {{asset("icons/upload.svg")}}"></span>
 
@@ -840,14 +867,16 @@
                     </div>
 
                 </div>
-
+                @if ($errors->has('photo'))
+                    <p class="has-error">{{ $errors->first('photo') }}</p>
+                @endif
                 <div class="row">
 
                     <span class="input--name">CV</span>
 
                     <label class="input__wrap file">
 
-                        <input min="1" max="1"  type="file" class="file">
+                        <input min="1" max="1" name="cv" type="file" class="file">
 
                         <span class="input--ico" style="background-image: {{asset("icons/upload.svg")}}"></span>
 
@@ -866,21 +895,25 @@
                     </div>
 
                 </div>
-
+                @if ($errors->has('cv'))
+                    <p class="has-error">{{ $errors->first('cv') }}</p>
+                @endif
                 <div class="row">
 
                     <span class="input--name">age</span>
 
                     <label class="input__wrap">
 
-                        <input type="text" placeholder="Input text field">
+                        <input type="text" name="age" placeholder="Input text field">
 
                         <span class="input--ico" style="background-image: {{asset("icons/puzzle.svg")}})"></span>
 
                     </label>
 
                 </div>
-
+                @if ($errors->has('age'))
+                    <p class="has-error">{{ $errors->first('age') }}</p>
+                @endif
                 <div class="row">
 
                     <span class="input--name">gender</span>
@@ -888,12 +921,12 @@
                     <div class="check__wrap">
 
                         <label class="check checked">
-                            <input name="1" type="radio">
+                            <input name="gender" type="radio" value="1">
                             <span>Male</span>
                         </label>
                         <label class="check">
 
-                            <input name="1" type="radio">
+                            <input name="gender" type="radio" value="2">
 
                             <span>Female</span>
 
@@ -909,28 +942,32 @@
 
                     <label class="input__wrap">
 
-                        <input type="email" placeholder="Input text field">
+                        <input type="email" name="email" placeholder="Input text field">
 
                         <span class="input--ico" style="background-image: {{asset("icons/e-mail-envelope.svg")}}"></span>
 
                     </label>
 
                 </div>
-
+                @if ($errors->has('email'))
+                    <p class="has-error">{{ $errors->first('email')}}</p>
+                @endif
                 <div class="row">
 
                     <span class="input--name">phone</span>
 
                     <label class="input__wrap">
 
-                        <input type="text" placeholder="Input text field">
+                        <input type="text" name="phone" placeholder="Input text field">
 
                         <span class="input--ico" style="background-image: {{asset("icons/smartphone-call.svg")}}"></span>
 
                     </label>
 
                 </div>
-
+                @if ($errors->has('phone'))
+                    <p class="has-error">{{ $errors->first('phone') }}</p>
+                @endif
                 <div class="row">
 
                     <span class="input--name">degree</span>
@@ -938,12 +975,12 @@
                     <div class="check__wrap">
 
                         <label class="check checked">
-                            <input name="1" type="radio">
+                            <input name="degree" type="radio" value="1">
                             <span>Ba</span>
                         </label>
                         <label class="check">
 
-                            <input name="1" type="radio">
+                            <input name="degree" type="radio" value="2">
 
                             <span>Ma</span>
 
@@ -951,7 +988,7 @@
 
                         <label class="check">
 
-                            <input name="1" type="radio">
+                            <input name="degree" type="radio" value="3">
 
                             <span>None</span>
 
@@ -961,34 +998,34 @@
 
                 </div>
 
-                <div class="row">
+                {{--<div class="row">--}}
 
-                    <span class="input--name">subject</span>
+                    {{--<span class="input--name">subject</span>--}}
 
-                    <div class="select toggle__wrap">
+                    {{--<div class="select toggle__wrap">--}}
 
-                        <div class="form__toggle" data-toggle="select">
+                        {{--<div class="form__toggle" data-toggle="select">--}}
 
-                            <p id="select_form_indicator">ddd</p>
+                            {{--<p id="select_form_indicator">ddd</p>--}}
 
-                            <span class="input--ico"></span>
+                            {{--<span class="input--ico"></span>--}}
 
-                        </div>
+                        {{--</div>--}}
 
-                        <ul class="form__list" data-toggle="select--toggle" style="display: none;">
-                            <li class="form__item">1</li>
-                            <li class="form__item">2</li>
-                        </ul>
+                        {{--<ul class="form__list" data-toggle="select--toggle" style="display: none;">--}}
+                            {{--<li class="form__item">1</li>--}}
+                            {{--<li class="form__item">2</li>--}}
+                        {{--</ul>--}}
 
-                        <div style="display: none">
+                        {{--<div style="display: none">--}}
 
-                            <select><option value=""></option><option value="1">1</option><option value="2">2</option></select>
+                            {{--<select><option value=""></option><option value="1">1</option><option value="2">2</option></select>--}}
 
-                        </div>
+                        {{--</div>--}}
 
-                    </div>
+                    {{--</div>--}}
 
-                </div>
+                {{--</div>--}}
 
                 <div class="row">
 
@@ -997,12 +1034,12 @@
                     <div class="check__wrap">
 
                         <label class="check checked">
-                            <input name="1" type="radio">
+                            <input name="certification" type="radio" value="1">
                             <span>TEFL</span>
                         </label>
                         <label class="check">
 
-                            <input name="1" type="radio">
+                            <input name="certification" type="radio" value="2">
 
                             <span>CELTA</span>
 
@@ -1010,7 +1047,7 @@
 
                         <label class="check">
 
-                            <input name="1" type="radio">
+                            <input name="certification" type="radio" value="3">
 
                             <span>TOEFL</span>
 
@@ -1027,12 +1064,12 @@
                     <div class="check__wrap">
 
                         <label class="check checked">
-                            <input name="1" type="radio">
+                            <input name="criminal_check" type="radio" value="1">
                             <span>Done</span>
                         </label>
                         <label class="check">
 
-                            <input name="1" type="radio">
+                            <input name="criminal_check" type="radio" value="2">
 
                             <span>Not Done In Progress</span>
 
@@ -1044,17 +1081,17 @@
 
                 <div class="row">
 
-                    <span class="input--name">notorized</span>
+                    <span class="input--name">notarized</span>
 
                     <div class="check__wrap">
 
                         <label class="check checked">
-                            <input name="1" type="radio">
+                            <input name="notorized" type="radio" value="1">
                             <span>Done</span>
                         </label>
                         <label class="check">
 
-                            <input name="1" type="radio">
+                            <input name="notorized" type="radio" value="2">
 
                             <span>Not Done In Progress</span>
 
@@ -1071,12 +1108,12 @@
                     <div class="check__wrap">
 
                         <label class="check checked">
-                            <input name="1" type="radio">
+                            <input name="authenticated" type="radio" value="1">
                             <span>Done</span>
                         </label>
                         <label class="check">
 
-                            <input name="1" type="radio">
+                            <input name="authenticated" type="radio" value="2">
 
                             <span>Not Done In Progress</span>
 
@@ -1092,7 +1129,7 @@
 
                     <label class="input__wrap">
 
-                        <input type="text" placeholder="Input text field">
+                        <input type="text" name="desired" placeholder="Input text field">
 
                         <span class="input--ico"></span>
 
@@ -1106,7 +1143,7 @@
 
                     <label class="input__wrap">
 
-                        <input type="text" placeholder="Input text field">
+                        <input type="text" name="current" placeholder="Input text field">
 
                         <span class="input--ico" style="background-image: {{asset("icons/placeholder.svg")}}"></span>
 
@@ -1120,7 +1157,7 @@
 
                     <div class="select toggle__wrap">
 
-                        <div class="form__toggle" data-toggle="select">
+                        <div id="country" class="form__toggle" data-toggle="select">
 
                             <p id="select_form_indicator">america</p>
 
@@ -1128,14 +1165,13 @@
 
                         </div>
 
-                        <ul class="form__list" data-toggle="select--toggle" style="display: none;">
-                            <li class="form__item">1</li>
-                            <li class="form__item">2</li>
+                        <ul id="country_list" class="form__list" data-toggle-open="select--toggle">
                         </ul>
 
-                        <div style="display: none">
+                        <div class="select--default">
 
-                            <select><option value=""></option><option value="1">1</option><option value="2">2</option></select>
+                            <select name="nationality" id="country_options">
+                            </select>
 
                         </div>
 
@@ -1149,7 +1185,7 @@
 
                     <label class="input__wrap file">
 
-                        <input min="1" max="1"  type="file" class="file">
+                        <input min="1" max="1" name="video" type="file" class="file">
 
                         <span class="input--ico" style="background-image: {{asset("icons/upload.svg")}}"></span>
 
@@ -1168,7 +1204,9 @@
                     </div>
 
                 </div>
-
+                @if ($errors->has('video'))
+                    <p class="has-error">{{ $errors->first('video')}}</p>
+                @endif
                 <div class="row">
 
                     <span class="input--name">preferred school</span>
@@ -1183,14 +1221,22 @@
 
                         </div>
 
-                        <ul class="form__list" data-toggle="select--toggle" style="display: none;">
-                            <li class="form__item">1</li>
-                            <li class="form__item">2</li>
+                        <ul class="form__list" data-toggle-open="select--toggle" style="display: none;">
+                            <li class="form__item">Primary school</li>
+                            <li class="form__item">International school</li>
+                            <li class="form__item">Training center</li>
+                            <li class="form__item">Other</li>
                         </ul>
 
-                        <div style="display: none">
+                        <div class="select--default">
 
-                            <select><option value=""></option><option value="1">1</option><option value="2">2</option></select>
+                            <select name="pref_school">
+                                <option value="Kindergarten">Kindergarten</option>
+                                <option value="Primary school">Primary school</option>
+                                <option value="International school">International school</option>
+                                <option value="Training center">Training center</option>
+                                <option value="Other">Other</option>
+                            </select>
 
                         </div>
 
@@ -1204,9 +1250,58 @@
 
                     <label class="input__wrap">
 
-                        <input type="text" placeholder="Input text field">
+                        <input type="text" name="experience" placeholder="Input text field">
 
                         <span class="input--ico" style="background-image: {{asset("icons/clock.svg")}}"></span>
+
+                    </label>
+
+                </div>
+                @if ($errors->has('experience'))
+                    <p class="has-error">{{ $errors->first('experience')}}</p>
+                @endif
+                <div class="row">
+
+                    <span class="input--name">salary expectation</span>
+
+                    <label class="input__wrap">
+
+                        <input type="text" name="salary_exp" placeholder="Input text field">
+
+                        <span class="input--ico" style="background-image: {{asset("icons/wallet-with-card-sticking-out.svg")}}"></span>
+
+                    </label>
+
+                </div>
+                @if ($errors->has('salary_exp'))
+                    <p class="has-error">{{ $errors->first('salary_exp') }}</p>
+                @endif
+                <input type="submit" value="Apply" class="submit">
+
+            </form>
+
+        </div>
+
+    </div>
+    <div class="pop__ups--school">
+
+        <div class="container">
+
+            <div class="title__wrap">
+
+                <h2>School creating</h2>
+
+            </div>
+
+            <form action="{{ route('createSchoolAsGuest') }}" method="POST">
+                {{csrf_field()}}
+                <div class="row">
+
+                    <span class="input--name">Generated code</span>
+
+                    <label class="input__wrap generated">
+
+                        <input type="text" name="code" placeholder="Enter school name" value="{{ $code }}" disabled>
 
                     </label>
 
@@ -1214,19 +1309,60 @@
 
                 <div class="row">
 
-                    <span class="input--name">salary expectation</span>
+                    <span class="input--name">School name</span>
 
                     <label class="input__wrap">
 
-                        <input type="text" placeholder="Input text field">
-
-                        <span class="input--ico" style="background-image: {{asset("icons/wallet-with-card-sticking-out.svg")}}"></span>
+                        <input type="text" name="name" placeholder="Enter school name">
 
                     </label>
 
                 </div>
+                @if ($errors->has('name'))
+                    <p class="has-error">{{ $errors->first('name') }}</p>
+                @endif
 
-                <input type="submit" value="Apply" class="submit">
+                <div class="row">
+
+                    <span class="input--name">Location</span>
+
+                    <label class="input__wrap">
+
+                        <input type="text" name="location" placeholder="Enter school location">
+
+                    </label>
+
+                </div>
+                @if ($errors->has('location'))
+                    <p class="has-error">{{ $errors->first('location') }}</p>
+                @endif
+
+                <div class="row">
+
+                    <span class="input--name">Number of teachers</span>
+
+                    <label class="input__wrap">
+
+                        <input type="tel" name="teachers" placeholder="Enter teachers number">
+
+                    </label>
+
+                </div>
+                @if ($errors->has('teachers'))
+                    <p class="has-error">{{ $errors->first('teachers') }}</p>
+                @endif
+
+                <div class="row">
+
+                    <span class="input--name">School data</span>
+
+                    <div class="textarea" placeholder="Enter school data" contenteditable="true"></div>
+                    <input type="hidden" name="data">
+                </div>
+                @if ($errors->has('data'))
+                    <p class="has-error">{{ $errors->first('data') }}</p>
+                @endif
+                <input type="submit" value="Submit" class="submit">
 
             </form>
 
@@ -1238,11 +1374,69 @@
 
 
 </div>
+</form>
 
 
 <script src={{asset("js/jquery-3.2.1.min.js")}}></script>
 <script src={{asset("js/slick.min.js")}}></script>
 <script src={{asset("js/common.js")}}></script>
+
+<script>
+    var country_list = [
+        "Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla","Antigua &amp; Barbuda",
+        "Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh",
+        "Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia &amp; Herzegovina",
+        "Botswana","Brazil","British Virgin Islands","Brunei","Bulgaria","Burkina Faso","Burundi","Canada","Cambodia",
+        "Cameroon","Cape Verde","Cayman Islands","Chad","Chile","China","Colombia","Congo","Cook Islands",
+        "Costa Rica","Cote D Ivoire","Croatia","Cruise Ship","Cuba","Cyprus","Czech Republic","Denmark","Djibouti",
+        "Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Estonia","Ethiopia",
+        "Falkland Islands","Faroe Islands","Fiji","Finland","France","French Polynesia","French West Indies",
+        "Gabon","Gambia","Georgia","Germany","Ghana","Gibraltar","Greece","Greenland","Grenada","Guam","Guatemala",
+        "Guernsey","Guinea","Guinea Bissau","Guyana","Haiti","Honduras","Hong Kong","Hungary","Iceland","India",
+        "Indonesia","Iran","Iraq","Ireland","Isle of Man","Israel","Italy","Jamaica","Japan","Jersey","Jordan",
+        "Kazakhstan","Kenya","Kuwait","Kyrgyz Republic","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya",
+        "Liechtenstein","Lithuania","Luxembourg","Macau","Macedonia","Madagascar","Malawi","Malaysia","Maldives",
+        "Mali","Malta","Mauritania","Mauritius","Mexico","Moldova","Monaco","Mongolia","Montenegro","Montserrat",
+        "Morocco","Mozambique","Namibia","Nepal","Netherlands","Netherlands Antilles","New Caledonia","New Zealand",
+        "Nicaragua","Niger","Nigeria","Norway","Oman","Pakistan","Palestine","Panama","Papua New Guinea","Paraguay",
+        "Peru","Philippines","Poland","Portugal","Puerto Rico","Qatar","Reunion","Romania","Russia","Rwanda",
+        "Saint Pierre &amp; Miquelon","Samoa","San Marino","Satellite","Saudi Arabia","Senegal","Serbia",
+        "Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","South Africa","South Korea","Spain",
+        "Sri Lanka","St Kitts &amp; Nevis","St Lucia","St Vincent","St. Lucia","Sudan","Suriname","Swaziland",
+        "Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Timor L'Este","Togo","Tonga",
+        "Trinidad &amp; Tobago","Tunisia","Turkey","Turkmenistan","Turks &amp; Caicos","Uganda","Ukraine",
+        "United Arab Emirates", "United States of America" ,"United Kingdom","Uruguay","Uzbekistan","Venezuela","Vietnam","Virgin Islands (US)",
+        "Yemen","Zambia","Zimbabwe"
+    ];
+
+    $.each(country_list, function(key, value) {
+        if(value === 'Afghanistan') {
+            $('div#country p').text(value);
+        }
+        $('#country_options')
+            .append($("<option></option>")
+                .attr("value",value)
+                .text(value));
+
+        $('#country_list')
+            .append($("<li class='form__item'></li>")
+                // .attr("value", value)
+                .text(value));
+    });
+
+    $(".toggle__wrap .form__item").on("click",function(){
+        var value = $(this).text();
+        console.log(value);
+        $(this).parents(".toggle__wrap").find(".select--default option:selected");
+        $(this).parents("[data-toggle-open]").siblings(".select--default").find("option[value=" + value + "]").prop("selected",true);
+        $(this).parent().removeClass("toggle").parents(".toggle__wrap").removeClass("opened");
+    });
+
+    $("div.textarea").on('change', function () {
+        var self = $(this);
+        $("input[name='data']").attr('value', self.text());
+    });
+</script>
 
 </body>
 

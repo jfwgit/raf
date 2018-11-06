@@ -14,11 +14,15 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('home');
-});
+    return view('home')->with('code', str_random(17));
+})->name('home');
 
 Auth::routes();
 
+Route::group( [ 'prefix' => 'create'], function() {
+    Route::post('teacher', 'HomeController@createTeacherAsGuest')->name('createTeacherAsGuest');
+    Route::post('school', 'HomeController@createSchoolAsGuest')->name('createSchoolAsGuest');
+});
 Route::group( [ 'prefix' => 'admin' , 'middleware' => 'auth'], function() {
     Route::get('/', 'AdminController@index')->name('admin');
     Route::get('schools','SchoolController@index')->name('showSchools');

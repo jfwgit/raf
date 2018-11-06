@@ -169,22 +169,22 @@ class TeacherService
         try {
             $attributes = $request->all();
 
-            $teacher->name = $attributes['name'];
-            $teacher->age = $attributes['age'] ?? null;
-            $teacher->gender = $attributes['gender'] ?? null;
-            $teacher->email = $attributes['email'] ?? null;
-            $teacher->phone = $attributes['phone'] ?? null;
-            $teacher->degree = $attributes['degree'] ?? null;
-            $teacher->certification = $attributes['certification'] ?? null;
-            $teacher->criminal_check = $attributes['criminal_check'] ?? null;
-            $teacher->notarized = $attributes['notorized'] ?? null;
-            $teacher->authenticated = $attributes['authenticated'] ?? null;
-            $teacher->desired_location = $attributes['desired'] ?? null;
-            $teacher->current_location = $attributes['current'] ?? null;
-            $teacher->nationality = $attributes['nationality'] ?? null;
-            $teacher->pref_school = $attributes['pref_school'] ?? null;
-            $teacher->experience = $attributes['experience'] ?? null;
-            $teacher->salary_exp = $attributes['salary_exp'] ?? null;
+            $teacher->name = $attributes['name'] ?? $teacher->name ;
+            $teacher->age = $attributes['age'] ?? $teacher->age ;
+            $teacher->gender = $attributes['gender'] ?? $teacher->gender ;
+            $teacher->email = $attributes['email'] ?? $teacher->email ;
+            $teacher->phone = $attributes['phone'] ?? $teacher->phone ;
+            $teacher->degree = $attributes['degree'] ?? $teacher->degree ;
+            $teacher->certification = $attributes['certification'] ?? $teacher->certification ;
+            $teacher->criminal_check = $attributes['criminal_check'] ?? $teacher->criminal_check ;
+            $teacher->notarized = $attributes['notorized'] ?? $teacher->notarized ;
+            $teacher->authenticated = $attributes['authenticated'] ?? $teacher->authenticated ;
+            $teacher->desired_location = $attributes['desired'] ?? $teacher->desired_location ;
+            $teacher->current_location = $attributes['current'] ?? $teacher->current_location ;
+            $teacher->nationality = $attributes['nationality'] ?? $teacher->nationality ;
+            $teacher->pref_school = $attributes['pref_school'] ?? $teacher->pref_school ;
+            $teacher->experience = $attributes['experience'] ?? $teacher->experience;
+            $teacher->salary_exp = $attributes['salary_exp'] ?? $teacher->salary_exp;
 
             $teacher->save();
         } catch (\Exception $e) {

@@ -23,24 +23,31 @@ function showScroll() {
 }
 /*******end scroll*******/
 
-/*************END*************/	
+/*************END*************/
 
 
 
-/************************************************sandwich********************************/
+/************************************************popup********************************/
 $(".pop--up").on("click", function(e){
-	var top = $("header").outerHeight();
-	e.preventDefault();
-	hideScroll();
-	$(".pop__ups").addClass("active").css("top", top);
+    var top = $("header").outerHeight();
+    e.preventDefault();
+    hideScroll();
+
+    if ( $(this).hasClass("teacher") ) {
+        $(".pop__ups .pop__ups--school").addClass("active");
+    } else {
+        $(".pop__ups .pop__ups--form").addClass("active");
+    }
+
+    $(".pop__ups").addClass("active").css("top", top);
 });
 
 
 $(".pop__ups > .close").on("click", function(){
-	$(this).parents(".pop__ups").removeClass("active");
-	showScroll();
+    $(this).parents(".pop__ups").removeClass("active").find("> div").removeClass("active");
+    showScroll();
 });
-/************************************************end sandwich********************************/
+/************************************************end popup********************************/
 
 
 /*******************************input file****************************************/
@@ -111,12 +118,20 @@ $(window).scroll(function(){
 	});
 /************************end********************************/
 
+/****************************textarea******************************/
+$(".textarea").focusout(function(){
+    var element = $(this);
+    if (!element.text().replace(" ", "").length) {
+        element.empty();
+    }
+});
+/****************************end textarea******************************/
 
 $(document).ready(function(){
 	/************************slide-toggle********************************/
 	$(".toggle__wrap .form__toggle[data-toggle]").on("click",function(){
 		$(this).parents(".toggle__wrap").toggleClass("opened");
-		$(this).siblings(".form__list[data-toggle="+$(this).attr("data-toggle")+"--toggle]").slideToggle();
+		$(this).siblings(".form__list[data-toggle-open="+$(this).attr("data-toggle")+"--toggle]").slideToggle();
 	})
 
 	$(".toggle__wrap .form__list .form__item").on("click", function(){

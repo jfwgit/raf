@@ -1,4 +1,3 @@
-/**********************************Color************************************/
 input::-moz-placeholder,
 textarea::-moz-placeholder {
   font-family: "HelveticaNeue", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
@@ -769,6 +768,14 @@ footer {
 
 .pop__ups.active {
   width: 100%; }
+.pop__ups--form,
+.pop__ups--school {
+  display: none;
+}
+.pop__ups--form.active,
+.pop__ups--school.active {
+  display: block;
+}
 
 .input--name {
   line-height: 25px;
@@ -871,7 +878,8 @@ input[type=radio] {
   margin: auto;
   text-overflow: ellipsis;
   overflow: hidden;
-  white-space: nowrap; }
+  white-space: nowrap;
+  line-height: normal; }
 
 .input__wrap {
   display: block;
@@ -911,6 +919,9 @@ input[type=radio] {
 .form__list {
   position: absolute;
   left: 0;
+  max-height: 185px;
+  overflow-y: auto;
+  display: none;
   right: 0;
   background-color: #fff;
   z-index: 1; }
@@ -935,6 +946,52 @@ input[type=radio] {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center; }
+
+
+.pop__ups--school .row{
+  flex-direction: column;
+}
+
+.pop__ups--school .input--name{
+  position: static;
+  transform: unset;
+  max-width: 1000px;
+  width: 100%;
+  margin-bottom: 10px;
+  margin-left: 0;
+  text-align: left;
+}
+
+.pop__ups--school .input__wrap {
+   max-width: 1000px;
+   width: 100%;
+}
+
+.textarea {
+  max-width: 1000px;
+  word-break: break-all;
+  width: 100%;
+  min-height: 254px;
+  border: 1px solid #c4c5c5;
+  border-radius: 6px;
+  padding: 7px 30px 7px 12px;
+  box-shadow: 0 1px 0 rgba(242, 242, 242, 0.84), inset 0 3px 3px rgba(218, 219, 219, 0.75);
+}
+
+.textarea[placeholder]:empty::before {
+    content: attr(placeholder);
+    font-weight: 400;
+    color: #a4a4a4;
+    font-size: 16px;
+}
+
+.textarea[placeholder]:empty:focus::before {
+    content: "";
+}
+
+.generated {
+  background-color: #f1f1f1;
+}
 
 /*==========  Desktop First Method  ==========*/
 /* Large Devices, Wide Screens */
@@ -1264,3 +1321,14 @@ input[type=radio] {
     width: 12%; }
   .main__sect .line:after {
     width: 12%; } }
+
+.has-error{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+  color: red;
+}
+.select--default{
+  display: none;
+}
